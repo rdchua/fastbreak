@@ -6,6 +6,7 @@ import { createAnimatableComponent } from 'react-native-animatable';
  * Import custom components
  */
 import ScoreboardCard from '../components/ScoreboardCard';
+import PlayerCard from '../components/PlayerCard';
 import NewsCard from '../components/NewsCard';
 
 const AnimatableScoreboardCard = createAnimatableComponent(ScoreboardCard);
@@ -23,6 +24,7 @@ export default class Scoreboard extends Component {
         return (
             <ScrollView style={styles.container}>
                 <AnimatableScoreboardCard />
+                <PlayerCard/>
                 {/* <NewsCard/> */}
             </ScrollView>
         );

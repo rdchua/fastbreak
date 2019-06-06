@@ -1,6 +1,6 @@
 import React from 'react';
 import {createMaterialBottomTabNavigator} from 'react-navigation-material-bottom-tabs';
-import Icon from 'react-native-vector-icons/dist/FontAwesome5';
+import Icon from 'react-native-vector-icons/dist/Feather';
 /**
  * Import screens here
  */
@@ -11,7 +11,7 @@ export default createMaterialBottomTabNavigator({
         screen: DailyTabs,
         navigationOptions: {
             tabBarIcon: (
-                <Icon name="clipboard-list" color='#aaa' size={22}/>
+                <Icon name="layout" color='#aaa' size={22}/>
             )
         }
     },
@@ -19,7 +19,7 @@ export default createMaterialBottomTabNavigator({
         screen: DailyTabs,
         navigationOptions: {
             tabBarIcon: (
-                <Icon name="newspaper" color='#aaa' size={22}/>
+                <Icon name="book-open" color='#aaa' size={22}/>
             )
         }
     },
@@ -27,7 +27,7 @@ export default createMaterialBottomTabNavigator({
         screen: DailyTabs,
         navigationOptions: {
             tabBarIcon: (
-                <Icon name="list-ol" color='#aaa' size={22}/>
+                <Icon name="list" color='#aaa' size={22}/>
             )
         }
     },
@@ -35,7 +35,7 @@ export default createMaterialBottomTabNavigator({
         screen: DailyTabs,
         navigationOptions: {
             tabBarIcon: (
-                <Icon name="trophy" color='#aaa' size={22}/>
+                <Icon name="star" color='#aaa' size={22}/>
             )
         }
     },
