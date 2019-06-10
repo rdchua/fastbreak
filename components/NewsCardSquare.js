@@ -4,6 +4,11 @@ import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 
 export default class NewsCardSquare extends Component {
+
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         return (
             <Animatable.View 
@@ -17,9 +22,9 @@ export default class NewsCardSquare extends Component {
                             colors={['transparent', 'rgba(18, 19, 20, 0.3)', 'rgba(18, 19, 20, 0.5)', 'rgba(18, 19, 20, 1)']}
                             style={styles.gradient}>
                         </LinearGradient>
-                        <Image source={require('../assets/images/andre.jpg')} style={styles.image}/>
+                        <Image source={{ uri: this.props.article.cover }} style={styles.image}/>
                         <View style={styles.textContainer}>
-                            <Text style={styles.text} numberOfLines={2}>Andre Hits the game winner to save the dubs.</Text>
+                            <Text style={styles.text} numberOfLines={2}>{this.props.article.title}</Text>
                         </View>
                     </View>
             </Animatable.View>

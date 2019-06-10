@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { StatusBar, View } from 'react-native';
+import { Text, View } from 'react-native';
 import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab-view';
+
+import Store from 'react-native-simple-store';
 
 /**
  * Import custom components here
@@ -8,16 +10,41 @@ import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab
 import ScoreboardPage from '../pages/Scoreboard';
 
 export default class DailyTabs extends Component {
-
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            loading: true
+        };
+    }
+
+    componentDidMount() {
+        this.loadPlayers();
+    }
+
+    async loadPlayers() {
+        const players = await Store.get('players');
+        if(!players) {
+            const response = await fetch('http://data.nba.net/prod/v1/2018/players.json');
+            const data = await response.json();
+            Store.push('players', data.league.standard);
+            this.setState({ 
+                players: data.league.standard, 
+                loading: false 
+            });
+        } else {
+            this.setState({ 
+                players: players[0],
+                loading: false 
+            });
+        }
     }
 
     render() {
+        if(this.state.loading) {
+            return(<Text>Loading</Text>)
+        }
         return (
             <View style={{ flex: 1 }}>
-                <StatusBar backgroundColor='#121314' barStyle='light-content'/>
                 <ScrollableTabView
                     initialPage={1}    
                     page={10}
@@ -38,18 +65,18 @@ export default class DailyTabs extends Component {
                         <ScrollableTabBar
                             backgroundColor='#121314'
                         />}>
-                            <ScoreboardPage tabLabel='YESTERDAY'/>
-                            <ScoreboardPage tabLabel='TODAY'/>
-                            <ScoreboardPage tabLabel='TOMORROW'/>
-                            <ScoreboardPage tabLabel='JUN 06'/>
-                            <ScoreboardPage tabLabel='JUN 07'/>
-                            <ScoreboardPage tabLabel='JUN 08'/>
-                            <ScoreboardPage tabLabel='JUN 09'/>
-                            <ScoreboardPage tabLabel='JUN 10'/>
-                            <ScoreboardPage tabLabel='JUN 11'/>
-                            <ScoreboardPage tabLabel='JUN 12'/>
-                            <ScoreboardPage tabLabel='JUN 13'/>
-                            <ScoreboardPage tabLabel='JUN 14'/>
+                            <ScoreboardPage players={this.state.players} tabLabel='YESTERDAY'/>
+                            <ScoreboardPage players={this.state.players} tabLabel='TODAY'/>
+                            <ScoreboardPage players={this.state.players} tabLabel='TOMORROW'/>
+                            <ScoreboardPage players={this.state.players} tabLabel='JUN 06'/>
+                            <ScoreboardPage players={this.state.players} tabLabel='JUN 07'/>
+                            <ScoreboardPage players={this.state.players} tabLabel='JUN 08'/>
+                            <ScoreboardPage players={this.state.players} tabLabel='JUN 09'/>
+                            <ScoreboardPage players={this.state.players} tabLabel='JUN 10'/>
+                            <ScoreboardPage players={this.state.players} tabLabel='JUN 11'/>
+                            <ScoreboardPage players={this.state.players} tabLabel='JUN 12'/>
+                            <ScoreboardPage players={this.state.players} tabLabel='JUN 13'/>
+                            <ScoreboardPage players={this.state.players} tabLabel='JUN 14'/>
                 </ScrollableTabView>
             </View>
         );

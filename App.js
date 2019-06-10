@@ -7,6 +7,30 @@ import Icon from 'react-native-vector-icons/dist/Feather';
  */
 import TabsPage from './pages/Tabs';
 
+export default class App extends React.Component {
+    async loadPlayers() {
+        const response = await fetch('http://data.nba.net/prod/v1/2018/players.json');
+        const data = response.json();
+        const players = Store.get('players');
+        if(!players) {
+            Store.push('players', data.league.standard);
+        } else {
+            Store.delete('players');
+            Store.push('players', data.league.standard);
+        }
+    }
+
+    componentDidMount() {
+        this.loadPlayers();
+    }
+
+    render() {
+        return (
+            <Fastbreak/>
+        )
+    }
+}
+
 const MainNavigator = createStackNavigator({
     Tabs: {
         screen: TabsPage
@@ -39,6 +63,4 @@ const MainNavigator = createStackNavigator({
     }
 });
 
-const App = createAppContainer(MainNavigator);
-
-export default App;
+const Fastbreak = createAppContainer(MainNavigator);

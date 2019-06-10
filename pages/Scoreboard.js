@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, Button, StyleSheet} from 'react-native';
+import {ScrollView, StatusBar, StyleSheet} from 'react-native';
 import { createAnimatableComponent } from 'react-native-animatable';
 
 /**
@@ -36,7 +36,8 @@ export default class Scoreboard extends Component {
                 animationBackgroundColor = {'#121314'}
                 pullHeight={120}
                 contentView={
-                    <ScrollView contentContainerStyle={styles.contentContainer} style={styles.container}>
+                    <ScrollView contentContainerStyle={styles.contentContainer} style={styles.container}>    
+                        <StatusBar backgroundColor='#121314' barStyle='light-content'/>
                         <AnimatableScoreboardCard />
                         <PlayerCard/>
                         {/* <NewsCard/> */}
