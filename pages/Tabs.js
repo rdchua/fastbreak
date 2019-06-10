@@ -5,55 +5,57 @@ import Icon from 'react-native-vector-icons/dist/Feather';
  * Import screens here
  */
 import DailyTabs from './DailyTabs';
+import News from './News';
 
 export default createMaterialBottomTabNavigator({
-    DailyTabs: {
+    Games: {
         screen: DailyTabs,
         navigationOptions: {
-            tabBarIcon: (
-                <Icon name="layout" color='#aaa' size={22}/>
+            tabBarIcon: ({tintColor}) => (
+                <Icon name="layout" color={tintColor} size={22}/>
             )
         }
     },
     News: {
-        screen: DailyTabs,
+        screen: News,
         navigationOptions: {
-            tabBarIcon: (
-                <Icon name="book-open" color='#aaa' size={22}/>
+            tabBarIcon: ({tintColor}) => (
+                <Icon name="book-open" color={tintColor} size={22}/>
             )
         }
     },
     Standings: {
         screen: DailyTabs,
         navigationOptions: {
-            tabBarIcon: (
-                <Icon name="list" color='#aaa' size={22}/>
+            tabBarIcon: ({tintColor}) => (
+                <Icon name="list" color={tintColor} size={22}/>
             )
         }
     },
     Leaders: {
         screen: DailyTabs,
         navigationOptions: {
-            tabBarIcon: (
-                <Icon name="star" color='#aaa' size={22}/>
+            tabBarIcon: ({tintColor}) => (
+                <Icon name="star" color={tintColor} size={22}/>
             )
         }
     },
     Search: {
         screen: DailyTabs,
         navigationOptions: {
-            tabBarIcon: (
-                <Icon name="search" color='#aaa' size={22}/>
+            tabBarIcon: ({tintColor}) => (
+                <Icon name="search" color={tintColor} size={22}/>
             )
         }
     },
 }, {
-    initialRouteName: 'DailyTabs',
-    activeColor: '#f0edf6',
-    inactiveColor: '#3e2465',
-    labeled: false,
+    initialRouteName: 'Games',
+    inactiveColor: 'gray',
+    // labeled: false,
+    activeTintColor: 'blue',
+    activeColor: '#1988F4',
     barStyle: {
-        backgroundColor: '#151515',
+        backgroundColor: '#111',
         elevation: 8
     }
 });

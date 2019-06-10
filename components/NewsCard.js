@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
         paddingTop: 5,
         paddingBottom: 15,
         paddingHorizontal: 5,
+        fontSize: 14,
         borderBottomColor: '#444',
         borderBottomWidth: StyleSheet.hairlineWidth,
         flexDirection: 'row'
@@ -97,8 +98,9 @@ const styles = StyleSheet.create({
         paddingLeft: 5,
         paddingRight: 10,
         lineHeight: 22,
+        fontSize: 15,
         color: 'white',
-        fontWeight: '500'
+        fontFamily: 'Roboto-Medium',
     },
     newsImage: {
         height: 70,

@@ -19,16 +19,17 @@ export default class DailyTabs extends Component {
             <View style={{ flex: 1 }}>
                 <StatusBar backgroundColor='#121314' barStyle='light-content'/>
                 <ScrollableTabView
-                    initialPage={10}    
+                    initialPage={1}    
                     page={10}
                     tabBarPosition='top'
                     tabBarActiveTextColor='white'
+                    tabBarBackgroundColor='#121314'
                     tabBarUnderlineStyle={{ backgroundColor: '#1988F4', height: 2, borderRadius: 9 }}
-                    tabBarInactiveTextColor='gray'
+                    tabBarInactiveTextColor='rgba(255,255,255,0.2)'
                     prerenderingSiblingsNumber={2}
                     tabBarTextStyle={{
-                        fontSize: 11, 
-                        letterSpacing: 0.7, 
+                        fontSize: 12, 
+                        letterSpacing: 0.7,
                         fontWeight: 'bold', 
                         marginTop: 10, 
                         fontFamily: ''

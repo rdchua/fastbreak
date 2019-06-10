@@ -70,6 +70,17 @@
 		<string>Octicons.ttf</string>
 		<string>SimpleLineIcons.ttf</string>
 		<string>Zocial.ttf</string>
+		<string>sportsnight.ttf</string>
+		<string>SF Sports Night.ttf</string>
+		<string>AtleticoBold.ttf</string>
+		<string>IBMPlexSans-Bold.ttf</string>
+		<string>IBMPlexSans-Medium.ttf</string>
+		<string>IBMPlexSans-Regular.ttf</string>
+		<string>IBMPlexSans-SemiBold.ttf</string>
+		<string>IBMPlexSansCondensed-Bold.ttf</string>
+		<string>IBMPlexSansCondensed-Regular.ttf</string>
+		<string>IBMPlexSansCondensed-SemiBold.ttf</string>
+		<string>Roboto-Medium.ttf</string>
 	</array>
 </dict>
 </plist>

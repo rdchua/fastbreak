@@ -58,6 +58,19 @@
 		52FFBB3035084A5D8E5AA81E /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8B30880DB869453D9FE6EBEB /* Zocial.ttf */; };
 		E69D662A262C42C4BABDD809 /* libRNGestureHandler.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C8D004A6B98410B857F66EB /* libRNGestureHandler.a */; };
 		1CEF8D6F543645BBB6D26B6A /* libRNGestureHandler-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8F0DC6E20044867A51311F8 /* libRNGestureHandler-tvOS.a */; };
+		45FC4BB96B5947F5A976C52D /* sportsnight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6A4B2142DEB642ABA310E701 /* sportsnight.ttf */; };
+		90A3EBD3709B4FFCA28A4FE8 /* SF Sports Night.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 53C8373D384A4860AE2A4671 /* SF Sports Night.ttf */; };
+		51C88F2FE5084A3EA4D8F27E /* AtleticoBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CDA74C1788974FA4ACDF85A8 /* AtleticoBold.ttf */; };
+		619C0E7DFDA648A895577449 /* libLottieReactNative.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 457668ABCFF24EEF8147916B /* libLottieReactNative.a */; };
+		0467CACCC22C470183AC351C /* IBMPlexSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9E556399A32447CB97FBCED7 /* IBMPlexSans-Bold.ttf */; };
+		A6A177FE42824AAF98A868B9 /* IBMPlexSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 97A66360C1F8410185F09277 /* IBMPlexSans-Medium.ttf */; };
+		A2EE773F09A14996B2F4A178 /* IBMPlexSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79F4CED7A5374BAF9A701692 /* IBMPlexSans-Regular.ttf */; };
+		762F40FBB77648A895A43D6A /* IBMPlexSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D8770ED705934E0EBC206810 /* IBMPlexSans-SemiBold.ttf */; };
+		0863C1F9028C4DBD860079FE /* IBMPlexSansCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 732D219CD49D401CB023B772 /* IBMPlexSansCondensed-Bold.ttf */; };
+		4F3F75BE8E9446A59B7FD013 /* IBMPlexSansCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6DFFC77160BB40F188115ED1 /* IBMPlexSansCondensed-Regular.ttf */; };
+		4011956C06A945F5A2F301A9 /* IBMPlexSansCondensed-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3697CB1AAE14089A9CF5587 /* IBMPlexSansCondensed-SemiBold.ttf */; };
+		8B41E58C908744A69005B574 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E623F7993C6F42768AA57990 /* Roboto-Medium.ttf */; };
+		4789428441124912B065A4F5 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3D73EA1688439C8D1A1AB2 /* libBVLinearGradient.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -386,6 +399,21 @@
 		E1FC495902C64F25BE5D6D9A /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; name = "RNGestureHandler.xcodeproj"; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		8C8D004A6B98410B857F66EB /* libRNGestureHandler.a */ = {isa = PBXFileReference; name = "libRNGestureHandler.a"; path = "libRNGestureHandler.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		C8F0DC6E20044867A51311F8 /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; name = "libRNGestureHandler-tvOS.a"; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		6A4B2142DEB642ABA310E701 /* sportsnight.ttf */ = {isa = PBXFileReference; name = "sportsnight.ttf"; path = "../assets/fonts/sportsnight.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		53C8373D384A4860AE2A4671 /* SF Sports Night.ttf */ = {isa = PBXFileReference; name = "SF Sports Night.ttf"; path = "../assets/fonts/SF Sports Night.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		CDA74C1788974FA4ACDF85A8 /* AtleticoBold.ttf */ = {isa = PBXFileReference; name = "AtleticoBold.ttf"; path = "../assets/fonts/AtleticoBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D46CC98DBB1344F6B0AFA1F9 /* LottieReactNative.xcodeproj */ = {isa = PBXFileReference; name = "LottieReactNative.xcodeproj"; path = "../node_modules/lottie-react-native/src/ios/LottieReactNative.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		457668ABCFF24EEF8147916B /* libLottieReactNative.a */ = {isa = PBXFileReference; name = "libLottieReactNative.a"; path = "libLottieReactNative.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		9E556399A32447CB97FBCED7 /* IBMPlexSans-Bold.ttf */ = {isa = PBXFileReference; name = "IBMPlexSans-Bold.ttf"; path = "../assets/fonts/IBMPlexSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		97A66360C1F8410185F09277 /* IBMPlexSans-Medium.ttf */ = {isa = PBXFileReference; name = "IBMPlexSans-Medium.ttf"; path = "../assets/fonts/IBMPlexSans-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		79F4CED7A5374BAF9A701692 /* IBMPlexSans-Regular.ttf */ = {isa = PBXFileReference; name = "IBMPlexSans-Regular.ttf"; path = "../assets/fonts/IBMPlexSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D8770ED705934E0EBC206810 /* IBMPlexSans-SemiBold.ttf */ = {isa = PBXFileReference; name = "IBMPlexSans-SemiBold.ttf"; path = "../assets/fonts/IBMPlexSans-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		732D219CD49D401CB023B772 /* IBMPlexSansCondensed-Bold.ttf */ = {isa = PBXFileReference; name = "IBMPlexSansCondensed-Bold.ttf"; path = "../assets/fonts/IBMPlexSansCondensed-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6DFFC77160BB40F188115ED1 /* IBMPlexSansCondensed-Regular.ttf */ = {isa = PBXFileReference; name = "IBMPlexSansCondensed-Regular.ttf"; path = "../assets/fonts/IBMPlexSansCondensed-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D3697CB1AAE14089A9CF5587 /* IBMPlexSansCondensed-SemiBold.ttf */ = {isa = PBXFileReference; name = "IBMPlexSansCondensed-SemiBold.ttf"; path = "../assets/fonts/IBMPlexSansCondensed-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		E623F7993C6F42768AA57990 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; name = "Roboto-Medium.ttf"; path = "../assets/fonts/Roboto-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		6D72152837804BA5B399BB21 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		0E3D73EA1688439C8D1A1AB2 /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,6 +444,8 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				7776A963F21F4AE9AE4B8067 /* libRNVectorIcons.a in Frameworks */,
 				E69D662A262C42C4BABDD809 /* libRNGestureHandler.a in Frameworks */,
+				619C0E7DFDA648A895577449 /* libLottieReactNative.a in Frameworks */,
+				4789428441124912B065A4F5 /* libBVLinearGradient.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -609,6 +639,8 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				F259DC1A589C4FDF9BDD28D9 /* RNVectorIcons.xcodeproj */,
 				E1FC495902C64F25BE5D6D9A /* RNGestureHandler.xcodeproj */,
+				D46CC98DBB1344F6B0AFA1F9 /* LottieReactNative.xcodeproj */,
+				6D72152837804BA5B399BB21 /* BVLinearGradient.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -675,6 +707,17 @@
 				EE869EB7364240FE858737BB /* Octicons.ttf */,
 				197D2EB045CD447CA4568630 /* SimpleLineIcons.ttf */,
 				8B30880DB869453D9FE6EBEB /* Zocial.ttf */,
+				6A4B2142DEB642ABA310E701 /* sportsnight.ttf */,
+				53C8373D384A4860AE2A4671 /* SF Sports Night.ttf */,
+				CDA74C1788974FA4ACDF85A8 /* AtleticoBold.ttf */,
+				9E556399A32447CB97FBCED7 /* IBMPlexSans-Bold.ttf */,
+				97A66360C1F8410185F09277 /* IBMPlexSans-Medium.ttf */,
+				79F4CED7A5374BAF9A701692 /* IBMPlexSans-Regular.ttf */,
+				D8770ED705934E0EBC206810 /* IBMPlexSans-SemiBold.ttf */,
+				732D219CD49D401CB023B772 /* IBMPlexSansCondensed-Bold.ttf */,
+				6DFFC77160BB40F188115ED1 /* IBMPlexSansCondensed-Regular.ttf */,
+				D3697CB1AAE14089A9CF5587 /* IBMPlexSansCondensed-SemiBold.ttf */,
+				E623F7993C6F42768AA57990 /* Roboto-Medium.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1141,6 +1184,17 @@
 				BF3B90824AD54BFC825F5481 /* Octicons.ttf in Resources */,
 				343F5B7A543F43449F2C6D4E /* SimpleLineIcons.ttf in Resources */,
 				52FFBB3035084A5D8E5AA81E /* Zocial.ttf in Resources */,
+				45FC4BB96B5947F5A976C52D /* sportsnight.ttf in Resources */,
+				90A3EBD3709B4FFCA28A4FE8 /* SF Sports Night.ttf in Resources */,
+				51C88F2FE5084A3EA4D8F27E /* AtleticoBold.ttf in Resources */,
+				0467CACCC22C470183AC351C /* IBMPlexSans-Bold.ttf in Resources */,
+				A6A177FE42824AAF98A868B9 /* IBMPlexSans-Medium.ttf in Resources */,
+				A2EE773F09A14996B2F4A178 /* IBMPlexSans-Regular.ttf in Resources */,
+				762F40FBB77648A895A43D6A /* IBMPlexSans-SemiBold.ttf in Resources */,
+				0863C1F9028C4DBD860079FE /* IBMPlexSansCondensed-Bold.ttf in Resources */,
+				4F3F75BE8E9446A59B7FD013 /* IBMPlexSansCondensed-Regular.ttf in Resources */,
+				4011956C06A945F5A2F301A9 /* IBMPlexSansCondensed-SemiBold.ttf in Resources */,
+				8B41E58C908744A69005B574 /* Roboto-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1279,11 +1333,15 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/lottie-react-native/src/ios/LottieReactNative",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1309,11 +1367,15 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/lottie-react-native/src/ios/LottieReactNative",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Release;
@@ -1338,6 +1400,8 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/lottie-react-native/src/ios/LottieReactNative",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1361,6 +1425,8 @@
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/lottie-react-native/src/ios/LottieReactNative",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Release;
@@ -1394,11 +1460,15 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/lottie-react-native/src/ios/LottieReactNative",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1432,11 +1502,15 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/lottie-react-native/src/ios/LottieReactNative",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Release;
@@ -1469,11 +1543,15 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/lottie-react-native/src/ios/LottieReactNative",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Debug;
@@ -1506,11 +1584,15 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
+					"$(SRCROOT)/../node_modules/lottie-react-native/src/ios/LottieReactNative",
+					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
 				);
 			};
 			name = Release;
