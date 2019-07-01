@@ -8,6 +8,7 @@ import Store from 'react-native-simple-store';
  * Import custom components here
  */
 import ScoreboardPage from '../pages/Scoreboard';
+import moment from 'moment-timezone';
 
 export default class DailyTabs extends Component {
     constructor(props) {
@@ -19,7 +20,7 @@ export default class DailyTabs extends Component {
 
     componentDidMount() {
         this.loadPlayers();
-    }
+    }  
 
     async loadPlayers() {
         const players = await Store.get('players');
@@ -40,6 +41,7 @@ export default class DailyTabs extends Component {
     }
 
     render() {
+        const date = moment.tz(moment().startOf('day'), 'America/New_York').format('YYYYMMDD');
         if(this.state.loading) {
             return(<Text>Loading</Text>)
         }
@@ -65,18 +67,18 @@ export default class DailyTabs extends Component {
                         <ScrollableTabBar
                             backgroundColor='#121314'
                         />}>
-                            <ScoreboardPage players={this.state.players} tabLabel='YESTERDAY'/>
-                            <ScoreboardPage players={this.state.players} tabLabel='TODAY'/>
-                            <ScoreboardPage players={this.state.players} tabLabel='TOMORROW'/>
-                            <ScoreboardPage players={this.state.players} tabLabel='JUN 06'/>
-                            <ScoreboardPage players={this.state.players} tabLabel='JUN 07'/>
-                            <ScoreboardPage players={this.state.players} tabLabel='JUN 08'/>
-                            <ScoreboardPage players={this.state.players} tabLabel='JUN 09'/>
-                            <ScoreboardPage players={this.state.players} tabLabel='JUN 10'/>
-                            <ScoreboardPage players={this.state.players} tabLabel='JUN 11'/>
-                            <ScoreboardPage players={this.state.players} tabLabel='JUN 12'/>
-                            <ScoreboardPage players={this.state.players} tabLabel='JUN 13'/>
-                            <ScoreboardPage players={this.state.players} tabLabel='JUN 14'/>
+                            <ScoreboardPage date={'20190404'} players={this.state.players} tabLabel='YESTERDAY'/>
+                            <ScoreboardPage date={'20190404'} players={this.state.players} tabLabel='TODAY'/>
+                            <ScoreboardPage date={'20190404'} players={this.state.players} tabLabel='TOMORROW'/>
+                            <ScoreboardPage date={'20190404'} players={this.state.players} tabLabel='JUN 06'/>
+                            <ScoreboardPage date={'20190404'} players={this.state.players} tabLabel='JUN 07'/>
+                            <ScoreboardPage date={'20190404'} players={this.state.players} tabLabel='JUN 08'/>
+                            <ScoreboardPage date={'20190404'} players={this.state.players} tabLabel='JUN 09'/>
+                            <ScoreboardPage date={'20190404'} players={this.state.players} tabLabel='JUN 10'/>
+                            <ScoreboardPage date={'20190404'} players={this.state.players} tabLabel='JUN 11'/>
+                            <ScoreboardPage date={'20190404'} players={this.state.players} tabLabel='JUN 12'/>
+                            <ScoreboardPage date={'20190404'} players={this.state.players} tabLabel='JUN 13'/>
+                            <ScoreboardPage date={'20190404'} players={this.state.players} tabLabel='JUN 14'/>
                 </ScrollableTabView>
             </View>
         );

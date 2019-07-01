@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ScrollView, StatusBar, StyleSheet} from 'react-native';
+import {ScrollView, StatusBar, StyleSheet, Text} from 'react-native';
 import { createAnimatableComponent } from 'react-native-animatable';
 
 /**
@@ -21,6 +21,14 @@ export default class Scoreboard extends Component {
         };
     }
 
+    componentDidMount() {
+        fetch(`http://data.nba.net/prod/v2/${this.props.date}/scoreboard.json`)
+            .then((response) => response.json())
+            .then((data) => {
+                this.setState({ games: data.games });
+            });
+    }
+
     onRefresh() {
         this.setState({isRefreshing: true});
         setTimeout(() => {
@@ -29,6 +37,12 @@ export default class Scoreboard extends Component {
     }
 
     render() {
+        const { games } = this.state;
+        if(!games) {
+            return (
+                <Text>Loading</Text>
+            )
+        }
         return (
             <PullToRefresh
                 isRefreshing={this.state.isRefreshing}
@@ -38,9 +52,8 @@ export default class Scoreboard extends Component {
                 contentView={
                     <ScrollView contentContainerStyle={styles.contentContainer} style={styles.container}>    
                         <StatusBar backgroundColor='#121314' barStyle='light-content'/>
-                        <AnimatableScoreboardCard />
+                        <AnimatableScoreboardCard games={this.state.games}/>
                         <PlayerCard/>
-                        {/* <NewsCard/> */}
                     </ScrollView>
                 }
                 onPullAnimationSrc ={require('../assets/animations/dribble.json')}
