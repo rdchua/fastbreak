@@ -25,7 +25,7 @@ export default class NewsCard extends Component {
                             </Text>
                         </View>
                         <View style={styles.newsImage}>
-                            <Image source={require('../assets/images/andre.jpg')} style={styles.image}/>
+                            <Image source={require('./../assets/images/andre.jpg')} style={styles.image}/>
                         </View>
                     </View>
                     <Text style={styles.author}>The Athletic - 1hr</Text>
@@ -40,7 +40,7 @@ export default class NewsCard extends Component {
                             </Text>
                         </View>
                         <View style={styles.newsImage}>
-                            <Image source={require('../assets/images/andre.jpg')} style={styles.image}/>
+                            <Image source={require('./../assets/images/andre.jpg')} style={styles.image}/>
                         </View>
                     </View>
                     <Text style={styles.author}>The Athletic - 1hr</Text>

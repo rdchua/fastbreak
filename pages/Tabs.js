@@ -4,13 +4,14 @@ import Icon from 'react-native-vector-icons/dist/Feather';
 /**
  * Import screens here
  */
-import DailyTabs from './DailyTabs';
-import News from './News';
+import DailyTabs from './DailyTabs/DailyTabs';
+import News from './News/News';
 
 export default createMaterialBottomTabNavigator({
     Games: {
         screen: DailyTabs,
         navigationOptions: {
+            header: null,
             tabBarIcon: ({tintColor}) => (
                 <Icon name="layout" color={tintColor} size={22}/>
             )

@@ -1,13 +1,32 @@
 import React, {Component} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View, FlatList} from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import PlayerLeader from './../components/PlayerLeader';
+const utils = require('./../utilities/helper');
 
 export default class PlayerCard extends Component {
+
+    constructor(props) {
+        super(props);
+        console.log(this.props.leaders);
+    }
+
+    _renderItem = (player) => {
+        return (
+            <PlayerLeader player={player}/>
+        )
+    }
+
+    _renderItemSeparator = () => {
+        return (
+            <View style={styles.itemDivider}></View>
+        );
+    }
+
     render() {
         return (
             <Animatable.View 
-                style={styles.card} 
-                style={styles.card} 
+                style={styles.card}
                 animation="fadeInUp"
                 duration={300}
                 delay={100}>
@@ -15,60 +34,11 @@ export default class PlayerCard extends Component {
                     <Text style={styles.title}>DAILY LEADERS</Text>
                     <Text style={styles.title2}>SEE ALL</Text>
                 </View>
-                <View style={[styles.content, { borderBottomWidth: StyleSheet.hairlineWidth }]}>
-                    <View style={styles.contentContainer}>
-                        <View style={styles.player}>
-                            <Image source={require('../assets/images/i.png')} style={styles.playerImage}/>
-                            <View style={styles.playerDetails}>
-                                <Text style={styles.playerName}>Lebron James</Text>
-                                <Text style={styles.playerStat}>32 pts | 8 reb | 9 ast</Text>
-                            </View>
-                        </View>
-                        <View style={styles.team}>
-                            <View style={styles.teamDetails}>
-                                <Text style={styles.teamName}>LA Lakers</Text>
-                                <Text style={styles.teamStat}>15-23</Text>
-                            </View>
-                            <Image source={require('../assets/images/LAL_logo.png')} style={styles.teamImage}/>
-                        </View>
-                    </View>
-                </View>
-                <View style={[styles.content, { borderBottomWidth: StyleSheet.hairlineWidth }]}>
-                    <View style={styles.contentContainer}>
-                        <View style={styles.player}>
-                            <Image source={require('../assets/images/i.png')} style={styles.playerImage}/>
-                            <View style={styles.playerDetails}>
-                                <Text style={styles.playerName}>Stephen Curry</Text>
-                                <Text style={styles.playerStat}>54 pts | 6 reb | 6 ast</Text>
-                            </View>
-                        </View>
-                        <View style={styles.team}>
-                            <View style={styles.teamDetails}>
-                                <Text style={styles.teamName}>GS Warriors</Text>
-                                <Text style={styles.teamStat}>22-8</Text>
-                            </View>
-                            <Image source={require('../assets/images/GSW_logo.png')} style={styles.teamImage}/>
-                        </View>
-                    </View>
-                </View>
-                <View style={styles.content}>
-                    <View style={styles.contentContainer}>
-                        <View style={styles.player}>
-                            <Image source={require('../assets/images/i.png')} style={styles.playerImage}/>
-                            <View style={styles.playerDetails}>
-                                <Text style={styles.playerName}>Khawi Leonard</Text>
-                                <Text style={styles.playerStat}>41 pts | 12 reb | 4 ast</Text>
-                            </View>
-                        </View>
-                        <View style={styles.team}>
-                            <View style={styles.teamDetails}>
-                                <Text style={styles.teamName}>TOR Raptors</Text>
-                                <Text style={styles.teamStat}>29-23</Text>
-                            </View>
-                            <Image source={require('../assets/images/TOR_logo.png')} style={styles.teamImage}/>
-                        </View>
-                    </View>
-                </View>
+                <FlatList
+                    ItemSeparatorComponent={this._renderItemSeparator}
+                    data={this.props.leaders.pointLeaders}
+                    keyExtractor={item => item.PLAYER_ID}
+                    renderItem={this._renderItem}/>
             </Animatable.View>
         );
     }
@@ -76,7 +46,6 @@ export default class PlayerCard extends Component {
 
 const styles = StyleSheet.create({
     card: {
-        marginVertical: 5,
         backgroundColor: '#1F2022',
         width: '100%',
         borderRadius: 15,
@@ -165,5 +134,9 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         color: 'gray',
         fontSize: 13
-    }
+    },
+    itemDivider: {
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderColor: '#333'
+    },
 });

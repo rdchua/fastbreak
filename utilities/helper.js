@@ -1,21 +1,52 @@
 import teams from  './../data/teams.json';
+import moment from 'moment';
 
-export const getTeam = (teamId) => {
-    return teams.find(team => {
-        return team.teamId === teamId;
-    });
+export const headers = {
+    headers: new Headers({
+        'X-Requested-With': 'XMLHttpRequest', 
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0'
+    })
 }
 
-export const getGameTime = (status, clock, period) => {
+export const getTeam = (team) => {
+    let found = teams.find(currTeam => {
+        return currTeam.teamId === team.teamId;
+    });
+    if(found) return found;
+    else {
+        return found = {
+            isNBAFranchise: false,
+            primaryColorRgba: "rgba(85,85,85,1)",
+            city: "",
+            altCityName: "",
+            fullName: "",
+            tricode: team.triCode,
+            teamId: "",
+            nickname: "Team",
+            urlName: "",
+            confName: "",
+            divName: "",
+            primaryColor: "#555",
+            twitterName: ""
+        }
+    }
+}
+
+export const getGameTime = (status, clock, period, startTimeUTC) => {
+    /**
+     * statusNum: 3 = Game finished
+     * statusNum: 2 = Game on going
+     * statusNum: 1 = Game not yet started
+     */
     switch(status) {
         case 3: {
             return 'FINAL';
         }
         case 2: {
-
+            return period.isHalfTime ? 'HALF' : `${clock == '' ? '0.0' : clock} - Q${period.current}`;
         }
         case 1: {
-
+            return moment(startTimeUTC).local().format('hh:mm a');
         }
     }
 }
