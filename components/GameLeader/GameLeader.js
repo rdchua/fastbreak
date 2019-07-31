@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import { styles } from './GameLeaderStyles';
-import * as api from './../../api/data_nba_endpoints'
+import * as api from './../../api/data_nba_endpoints';
+import MyText from '../../components/MyText/MyText'
 
 export default class GameLeader extends Component {
 
@@ -19,34 +20,34 @@ export default class GameLeader extends Component {
                             <Image source={{ uri: api.HEADSHOT(player.personId) }} style={[styles.playerImage, {backgroundColor: teamColor}]}/>
                         </View>
                         <View style={styles.playerDetails}>
-                            <Text style={styles.playerName}>{player.firstName} {player.lastName}</Text>
+                            <MyText style={styles.playerName}>{player.firstName} {player.lastName}</MyText>
                             <View style={styles.statsContainer}>
                                 <View style={styles.stat}>
-                                    <Text style={styles.statValue}>{player.points}</Text>
-                                    <Text style={styles.statName}>PTS</Text>
+                                    <MyText weight={700} style={styles.statValue}>{player.points}</MyText>
+                                    <MyText style={styles.statName}>PTS</MyText>
                                 </View>
                                 <View style={styles.stat}>
-                                    <Text style={styles.statValue}>{player.totReb}</Text>
-                                    <Text style={styles.statName}>REB</Text>
+                                    <MyText weight={700} style={styles.statValue}>{player.totReb}</MyText>
+                                    <MyText style={styles.statName}>REB</MyText>
                                 </View>
                                 <View style={styles.stat}>
-                                    <Text style={styles.statValue}>{player.assists}</Text>
-                                    <Text style={styles.statName}>AST</Text>
+                                    <MyText weight={700} style={styles.statValue}>{player.assists}</MyText>
+                                    <MyText style={styles.statName}>AST</MyText>
                                 </View>
                                 <View style={styles.stat}>
-                                    <Text style={styles.statValue}>{player.steals}</Text>
-                                    <Text style={styles.statName}>STL</Text>
+                                    <MyText weight={700} style={styles.statValue}>{player.steals}</MyText>
+                                    <MyText style={styles.statName}>STL</MyText>
                                 </View>
                                 <View style={styles.stat}>
-                                    <Text style={styles.statValue}>{player.blocks}</Text>
-                                    <Text style={styles.statName}>BLK</Text>
+                                    <MyText weight={700} style={[styles.statValue, {borderWidth: 0}]}>{player.blocks}</MyText>
+                                    <MyText style={styles.statName}>BLK</MyText>
                                 </View>
                             </View>
                         </View>
                     </View>
-                    <View style={styles.team}>
+                    {/* <View style={styles.team}>
                         <Image source={teamImage} style={styles.teamImage}/>
-                    </View>
+                    </View> */}
                 </View>
             </View>
         );

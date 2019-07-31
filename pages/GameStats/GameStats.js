@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import { View, Image, ScrollView, Text } from 'react-native';
 import { styles } from './GameStatsStyles';
 import moment from 'moment';
 import Toast, {DURATION} from 'react-native-easy-toast';
@@ -16,8 +16,7 @@ import {
 import Card from '../../components/Card/Card';
 import StatCompare from '../../components/StatCompare/StatCompare';
 import GameLeader from '../../components/GameLeader/GameLeader';
-import StatCompareCircle from '../../components/StatCompareCircle/StatCompareCircle';
-import Loading from '../../components/Loading/Loading';
+import MyText from '../../components/MyText/MyText';
 
 export default class GameStats extends Component {
 
@@ -53,6 +52,7 @@ export default class GameStats extends Component {
             .then((response) => response.json())
             .then((data) => {
                 this.setState({ article: data });
+                console.log(this.state.article);
             })
             .catch((err) => {
                 this.refs.toast.show('Error fetching recap article.', DURATION.LENGTH_LONG);
@@ -103,23 +103,90 @@ export default class GameStats extends Component {
         });
     }
 
+    _renderPlaceholder = () => {
+        return (
+            <Placeholder
+                Animation={Fade}>
+                    <PlaceholderLine width={80} style={{ backgroundColor: 'black' }}/>
+                    <PlaceholderLine style={{ backgroundColor: '#555' }}/>
+                    <PlaceholderLine width={30} style={{ backgroundColor: '#555' }}/>
+            </Placeholder>
+        )
+    }
+
     _renderArticle = () => {
         if(!this.state.article) {
-            return (
-                <Placeholder
-                    Animation={Fade}>
-                        <PlaceholderLine width={80} style={{ backgroundColor: 'black' }}/>
-                        <PlaceholderLine style={{ backgroundColor: '#555' }}/>
-                        <PlaceholderLine width={30} style={{ backgroundColor: '#555' }}/>
-                </Placeholder>
-            )
         }
         return (
             <View style={{ paddingHorizontal: 4 }}>
-                <Text style={styles.articleTitle}>{this.state.article.title}</Text>
-                <Text style={styles.articleBody}>{this.state.article.paragraphs[3].paragraph}</Text>
+                {
+                    !this.state.article ? 
+                    this._renderPlaceholder() : 
+                    <View>
+                        <MyText weight={700} style={styles.articleTitle}>{this.state.article.title}</MyText>
+                        <MyText style={styles.articleBody}>{this.state.article.paragraphs[3].paragraph}</MyText>
+                    </View>
+                }
             </View>
         );
+    }
+
+    _renderQuarterly = () => {
+        const { params } = this.props;
+        return (
+            <View style={styles.quarterly}>
+                <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
+                    <MyText weight={600} style={styles.quarterTeamName}>{params.hTeam.nickname}</MyText>
+                    <Image source={params.hTeamImage} style={styles.quarterTeamImage}/>
+                    <MyText style={styles.teamRecord}>(42 - 20)</MyText>
+                </View>
+                <View style={{flex: 1}}>
+                    {this._renderQuarterPoints(params.hTeamScore.linescore)}
+                </View>
+                <View style={{flex: 1}}>
+                    {this._renderQuarters(params.hTeamScore.linescore)}
+                </View>
+                <View style={{ flex: 1}}>
+                    {this._renderQuarterPoints(params.vTeamScore.linescore)}
+                </View>
+                <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
+                    <MyText weight={600} style={styles.quarterTeamName}>{params.vTeam.nickname}</MyText>
+                    <Image source={params.vTeamImage} style={styles.quarterTeamImage}/>
+                    <MyText style={styles.teamRecord}>(42 - 20)</MyText>
+                </View>
+            </View>
+            // <View style={styles.quarterly}>
+            //     <View style={styles.quarterRow}>
+            //         <View style={{ flexDirection: 'row', flex: 4 }}>
+            //             <Image source={params.hTeamImage} style={styles.quarterTeamImage}/>
+            //             <MyText style={styles.quarterTeamName}>{params.hTeam.tricode} {params.hTeam.nickname}</MyText>
+            //         </View>
+            //         {this._renderQuarterPoints(params.hTeamScore.linescore)}
+            //     </View>
+            //     <View style={styles.quarterRow}>
+            //         <View style={{ flexDirection: 'row', flex: 4 }}>
+            //             <Image source={params.vTeamImage} style={styles.quarterTeamImage}/>
+            //             <MyText style={styles.quarterTeamName}>{params.vTeam.tricode} {params.vTeam.nickname}</MyText>
+            //         </View>
+            //         {this._renderQuarterPoints(params.vTeamScore.linescore)}
+            //     </View>
+            // </View>
+        )
+    }
+
+    toOrdinal(i) {
+        var j = i % 10,
+            k = i % 100;
+        if (j == 1 && k != 11) {
+            return i + "st";
+        }
+        if (j == 2 && k != 12) {
+            return i + "nd";
+        }
+        if (j == 3 && k != 13) {
+            return i + "rd";
+        }
+        return i + "th";
     }
 
     _renderPageLoading = () => {
@@ -135,7 +202,14 @@ export default class GameStats extends Component {
 
     _renderQuarterPoints = (linescore) => {
         let quarters = linescore.map((quarter) => {
-            return <Text style={styles.quarterVal}>{quarter.score}</Text>;
+            return <MyText style={styles.quarterVal}>{quarter.score}</MyText>;
+        });
+        return quarters;
+    }
+
+    _renderQuarters = (linescore) => {
+        let quarters = linescore.map((quarter, index) => {
+            return <MyText style={[styles.quarterVal, {color: 'gray'}]}>{this.toOrdinal(index+1)}</MyText>;
         });
         return quarters;
     }
@@ -145,9 +219,9 @@ export default class GameStats extends Component {
         let quarters = linescore.map((quarter) => {
             i++;
             if(i > 4) {
-                return <Text style={[styles.quarterVal, { color: '#888' }]}>{`OT${i-4}`}</Text>
+                return <MyText style={[styles.quarterVal, { color: '#888' }]}>{`OT${i-4}`}</MyText>
             }
-            return <Text style={[styles.quarterVal, { color: '#888' }]}>{`Q${i}`}</Text>
+            return <MyText style={[styles.quarterVal, { color: '#888' }]}>{`Q${i}`}</MyText>
         });
         return quarters;
     }
@@ -156,17 +230,18 @@ export default class GameStats extends Component {
         const params = {...this.props};
         return (
             <View>
-                <Text style={styles.divider}>:</Text>
+                <MyText style={styles.divider}>:</MyText>
             </View>
         )
     }
 
     render() {
         const { hLeader, vLeader } = this.state;
-        const { params, gameStats, gameData } = this.props;
+        const { params, gameStats, gameData, handleScroll } = this.props;
         return (
-            <ScrollView 
-                contentContainerStyle={{ paddingTop: 10, paddingBottom: 30 }} 
+            <ScrollView
+                onScroll={handleScroll}
+                contentContainerStyle={{ paddingTop: 5, paddingBottom: 30 }} 
                 style={{ paddingHorizontal: 8 }}>
                 <Toast
                     ref="toast"
@@ -176,38 +251,20 @@ export default class GameStats extends Component {
                     fadeInDuration={750}
                     fadeOutDuration={1000}
                     opacity={1}
-                    textStyle={styles.toastText}
+                    MyTextStyle={styles.toastMyText}
                 />
-                <Card title="Latest news">
-                    {this._renderArticle()}
+
+                <Card>
+                    {this._renderQuarterly()}
                 </Card>
 
                 <Card>
-                    <View>
-                        {/* <View style={styles.quarterRow}>
-                            <Text style={styles.quarterTeamName}>&nbsp;</Text>
-                            {this._renderQuarterTitle(params.hTeamScore.linescore)}
-                        </View> */}
-                        <View style={styles.quarterRow}>
-                            <View style={{ flexDirection: 'row', flex: 4 }}>
-                                <Image source={params.hTeamImage} style={styles.quarterTeamImage}/>
-                                <Text style={styles.quarterTeamName}>{params.hTeam.tricode} {params.hTeam.nickname}</Text>
-                            </View>
-                            {this._renderQuarterPoints(params.hTeamScore.linescore)}
-                        </View>
-                        <View style={styles.quarterRow}>
-                            <View style={{ flexDirection: 'row', flex: 4 }}>
-                                <Image source={params.vTeamImage} style={styles.quarterTeamImage}/>
-                                <Text style={styles.quarterTeamName}>{params.vTeam.tricode} {params.vTeam.nickname}</Text>
-                            </View>
-                            {this._renderQuarterPoints(params.vTeamScore.linescore)}
-                        </View>
-                    </View>
-                </Card>
+                    {this._renderArticle()}
+                </Card> 
 
                 {
                     hLeader ? 
-                    <Card title="Game Leaders">
+                    <Card title="Top players">
                         <GameLeader
                             teamImage={params.hTeamImage}
                             teamColor={params.hTeam.primaryColor}
@@ -268,7 +325,7 @@ export default class GameStats extends Component {
                             hTeamStat={gameStats.hTeam.totals.turnovers}
                             vTeamStat={gameStats.vTeam.totals.turnovers}
                             statName='TOV'/>
-                        <StatCompareCircle
+                        <StatCompare
                             hTeamColor={params.hTeam.primaryColor}
                             vTeamColor={params.vTeam.primaryColor}
                             hTeamStat={gameStats.hTeam.totals.fgm}
@@ -276,8 +333,8 @@ export default class GameStats extends Component {
                             vTeamStat={gameStats.vTeam.totals.fgm}
                             vTeamStat2={gameStats.vTeam.totals.fga}
                             isPct={true}
-                            statName='Field Goal'/>
-                        <StatCompareCircle
+                            statName='FG%'/>
+                        <StatCompare
                             hTeamColor={params.hTeam.primaryColor}
                             vTeamColor={params.vTeam.primaryColor}
                             hTeamStat={gameStats.hTeam.totals.tpm}
@@ -285,8 +342,8 @@ export default class GameStats extends Component {
                             vTeamStat={gameStats.vTeam.totals.tpm}
                             vTeamStat2={gameStats.vTeam.totals.tpa}
                             isPct={true}
-                            statName='Three Point'/>
-                        <StatCompareCircle
+                            statName='3P%'/>
+                        <StatCompare
                             hTeamColor={params.hTeam.primaryColor}
                             vTeamColor={params.vTeam.primaryColor}
                             hTeamStat={gameStats.hTeam.totals.ftm}
@@ -294,7 +351,7 @@ export default class GameStats extends Component {
                             vTeamStat={gameStats.vTeam.totals.ftm}
                             vTeamStat2={gameStats.vTeam.totals.fta}
                             isPct={true}
-                            statName='Free Throw'/>
+                            statName='FT%'/>
                     </Card> : null
                 }
 
@@ -302,8 +359,8 @@ export default class GameStats extends Component {
                     gameData ?
                     <Card title="Game Info">
                         <View style={styles.infoContainer}>
-                            <Text style={styles.gameDetails}>{moment(gameData.startTimeUTC).format('ddd, MMM DD, YYYY   •  hh:mm A')}</Text>
-                            <Text style={[styles.gameDetails, { color: '#aaa' }]}>{gameData.arena.name}  •  {gameData.arena.city}, {gameData.arena.stateAbbr}</Text>
+                            <MyText style={styles.gameDetails}>{moment(gameData.startTimeUTC).format('ddd, MMM DD, YYYY   •  hh:mm A')}</MyText>
+                            <MyText style={[styles.gameDetails, { color: '#aaa' }]}>{gameData.arena.name}  •  {gameData.arena.city}, {gameData.arena.stateAbbr}</MyText>
                         </View>
                     </Card> : null
                 }

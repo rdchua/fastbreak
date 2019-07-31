@@ -1,5 +1,7 @@
 import teams from  './../data/teams.json';
 import moment from 'moment';
+import Store from 'react-native-simple-store';
+import * as twitterAPI from './../api/twitter_endpoints';
 
 export const headers = {
     headers: new Headers({
@@ -7,6 +9,20 @@ export const headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0'
     })
 }
+
+export const twitterAuth = fetch(twitterAPI.oAuth, twitterAPI.authHeaders).then((response) => response.json());
+
+export const getTwitterToken = 
+    Store.get('twitter_token').then((twitter_token) => {
+        if(!twitter_token) {
+            twitterAuth.then((data) => {
+                Store.update('twitter_token', {access_token: data.access_token});
+                return data.access_token
+            });
+        } else {
+            return twitter_token;
+        }
+    })
 
 export const getTeam = (team) => {
     let found = teams.find(currTeam => {
@@ -58,6 +74,19 @@ export const isWinner = (thisTeam, otherTeam) => {
         return false;
     }
 }
+
+export const hexToRgba = (hex, alpha) => {
+    var c;
+    if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
+        c= hex.substring(1).split('');
+        if(c.length== 3){
+            c= [c[0], c[0], c[1], c[1], c[2], c[2]];
+        }
+        c= '0x'+c.join('');
+        return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+`,${alpha})`;
+    }
+    throw new Error('Bad Hex');
+} 
 
 export const getTeamImage = (teamTriCode) => {
     let source;

@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, Image, StyleSheet, Animated, Easing } fro
 import Icon from 'react-native-vector-icons/AntDesign';
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 import { styles } from './CollapsibleStyles';
+import MyText from '../../components/MyText/MyText';
 
 export default class Collapsible extends Component {
 
@@ -16,8 +17,13 @@ export default class Collapsible extends Component {
 
     _renderTeamName = (status, isWinner, team) => {
         const style = isWinner ? styles.teamNameWinner : styles.teamNameLoser;
+        const weight = isWinner ? 700 : 500;
         return (
-            <Text style={status != 1 ? style : styles.teamNameLoser}>{`${team.tricode} ${team.nickname}`}</Text> 
+            <MyText 
+                weight={weight} 
+                style={status != 1 ? style : styles.teamNameLoser}>
+                    {`${team.tricode} ${team.nickname}`}
+            </MyText> 
         )
     }
 
@@ -34,25 +40,25 @@ export default class Collapsible extends Component {
         ];
 
         return (
-            status != 1 ? <Text style={style}>{score}</Text> : <Text style={style}>-</Text>
+            status != 1 ? <MyText style={style}>{score}</MyText> : <MyText style={style}>-</MyText>
         );
     }
 
     _renderGameClock = (status, clock) => {
         const style = [styles.gameClockValue, {color: status == 2 ? '#CC2D40' : 'white'}]
-        return <Text style={style}>{clock}</Text>
+        return <MyText style={style}>{clock}</MyText>
     }
 
     _renderTeamLeaders = (hPlayerName, vPlayerName, hTeamStat, vTeamStat, statName) => {
         return (
             <View style={styles.leaderContainer}>
-                <Text style={styles.hPlayerLeader} numberOfLines={1}>{this.displayName(hPlayerName)}</Text>
+                <MyText style={styles.hPlayerLeader} numberOfLines={1}>{this.displayName(hPlayerName)}</MyText>
                 <View style={{ flex: 1, flexDirection: 'row' }}>
-                    <Text style={styles.hTeamLeaderVal}>{hTeamStat}</Text>
-                    <Text style={[styles.statName, {flex: 2}]}>{statName}</Text>
-                    <Text style={styles.vTeamLeaderVal}>{vTeamStat}</Text>
+                    <MyText style={styles.hTeamLeaderVal}>{hTeamStat}</MyText>
+                    <MyText style={[styles.statName, {flex: 2}]}>{statName}</MyText>
+                    <MyText style={styles.vTeamLeaderVal}>{vTeamStat}</MyText>
                 </View>
-                <Text style={styles.vPlayerLeader} numberOfLines={1}>{this.displayName(vPlayerName)}</Text>
+                <MyText style={styles.vPlayerLeader} numberOfLines={1}>{this.displayName(vPlayerName)}</MyText>
             </View>
         );
     }
@@ -68,8 +74,8 @@ export default class Collapsible extends Component {
     
     _setMinHeight = (event) => {
         /**
-         * Add 21 to minHeight because the height of the text nugget is 21.
-         * This can be found by getting the height of the text onLayout
+         * Add 21 to minHeight because the height of the MyText nugget is 21.
+         * This can be found by getting the height of the MyText onLayout
          */
         this.setState({
             minHeight: event.nativeEvent.layout.height + 21,
@@ -149,7 +155,7 @@ export default class Collapsible extends Component {
                                     {this._renderGameClock(status, gameTime)}
                                 </View>
                                 <View style={[styles.gameStream, { marginTop: -10 }]}>
-                                    <Text style={styles.gameStreamValue}>ESPN</Text>
+                                    <MyText style={styles.gameStreamValue}>ESPN</MyText>
                                 </View>
                             </View>
                             <TouchableOpacity style={{ flex: 1 }} onPress={this.toggle}>
@@ -160,8 +166,8 @@ export default class Collapsible extends Component {
                         </View>
                     </TouchableOpacity>
                     {
-                        nugget.text !== '' ?
-                        <Text style={styles.nugget}>{nugget.text}</Text> : null
+                        nugget.MyText !== '' ?
+                        <MyText italic={true} style={styles.nugget}>{nugget.text}</MyText> : null
                     }
                 </View>
                 <View style={styles.collapsibleView} onLayout={this._setMaxHeight}>

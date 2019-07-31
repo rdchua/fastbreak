@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { styles } from './CardStyles';
+import MyText from '../../components/MyText/MyText'
 
 export default class Card extends React.Component {
 
     _renderSubTitle = (subtitle) => {
-        return subtitle ? <Text style={styles.subtitle}>{this.props.subtitle}</Text> : null
+        return subtitle ? <MyText weight={700} style={styles.subtitle}>{this.props.subtitle}</MyText> : null
     }
 
     _renderTitle = (title, subtitle) => {
         if(title) {
             return (
                 <View style={styles.cardTitle}>
-                    <Text style={styles.title}>{title}</Text>
+                    <MyText weight={700} style={styles.title}>{title}</MyText>
                     {this._renderSubTitle(subtitle)}
                 </View>
             )

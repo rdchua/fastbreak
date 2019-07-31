@@ -27,6 +27,11 @@ export const PBP = (date, gameId, period) => {
 }
 
 export const HEADSHOT = (personId) => {
-    return `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${personId}.png`;;
+    return `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${personId}.png`;
+    /**
+     * https://nlnbamdnyc-a.akamaihd.net/nba/media/img/players/head/132x132/201939.png
+     * This is an alternate link for player headshots. Just replace the last number to the persion ID 
+     * of the player. This links is what the official NBA website uses for their images.
+     */
 }
 

@@ -22,7 +22,7 @@ export const styles = StyleSheet.create({
     },
     teamNameWinner: {
         flex: 1,
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         color: 'white',
         alignSelf: 'center',
     },
@@ -83,7 +83,7 @@ export const styles = StyleSheet.create({
     nugget: {
         color: '#888',
         fontSize: 12,
-        fontStyle: 'italic',
+        // fontStyle: 'italic',
         paddingLeft: 8,
         paddingTop: 5,
     },
@@ -121,7 +121,9 @@ export const styles = StyleSheet.create({
     },
     statName: {
         color: '#888',
-        fontWeight: 'bold',
+        fontSize: 12,
+        alignSelf: 'center',
+        // fontWeight: 'bold',
         marginHorizontal: 20,
         flex: 1,
         textAlign: 'center'
@@ -129,13 +131,13 @@ export const styles = StyleSheet.create({
     hTeamLeaderVal: {
         flex: 1,
         textAlign: 'center',
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         color: 'white',
     },
     vTeamLeaderVal: {
         flex: 1,
         textAlign: 'center',
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         color: 'white',
     }
 })

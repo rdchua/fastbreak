@@ -1,7 +1,8 @@
 import React from 'react';
 import { Text } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
-import Store from 'react-native-simple-store';
+import _ from 'underscore';
+const utils = require('./utilities/helper');
 /**
  * Import screens here
  */
@@ -16,8 +17,15 @@ export default class App extends React.Component {
             loading: true
         }
     }
+
+    oAuthTwitter() {
+        utils.twitterAuth.then((data) => {
+            Store.update('twitter_token', {access_token: data.access_token})
+        });
+    }
     
     componentDidMount() {
+        this.oAuthTwitter();
         this.setState({ loading: false });
     }
 

@@ -66,9 +66,7 @@ export default class DailyTabs extends Component {
                     tabBarTextStyle={{
                         fontSize: 12, 
                         letterSpacing: 0.7,
-                        fontWeight: 'bold', 
                         marginTop: 10, 
-                        fontFamily: ''
                     }}
                     renderTabBar={() => 
                         <ScrollableTabBar backgroundColor='#121314'/>}>    

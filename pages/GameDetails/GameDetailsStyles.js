@@ -4,10 +4,16 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#121314',
+        paddingTop: 8,
     },
     header: {
-        backgroundColor: '#1F2022',
-        height: 150,
+        // backgroundColor: '#121314',
+        // height: 150,
+        flex: 1, 
+        flexDirection: 'row', 
+        marginRight: 40, 
+        justifyContent: 'center', 
+        alignItems: 'center'
     },
     headerContentContainer: {
         flex: 1,
@@ -36,28 +42,19 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         // fontWeight: 'bold'
     },
-    header: {
-        flex: 1, 
-        flexDirection: 'row', 
-        marginRight: 40, 
-        justifyContent: 'center', 
-        alignItems: 'center'
-    },
     teamImage: {
         height: 40, 
         width: 40
     },
     score: {
         fontSize: 15,
-        marginHorizontal: 5, 
-        color: 'white', 
-        fontWeight: 'bold'
+        marginHorizontal: 3.5, 
+        color: 'white',
     },
     clock: {
         fontSize: 15,
         marginHorizontal: 10, 
-        color: 'white', 
-        fontWeight: 'bold'
+        color: 'white',
     },
     loadingContainer: {
         flex: 1,

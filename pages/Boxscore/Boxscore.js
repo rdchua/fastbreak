@@ -9,6 +9,7 @@ const fontScale = DeviceInfo.getFontScale();
  */
 import Card from './../../components/Card/Card';
 import Button from './../../components/Button/Button';
+import MyText from './../../components/MyText/MyText';
 
 const PLAYER_WIDTH = { width: 150 * fontScale };
 const MIN_WIDTH = { width: 45 * fontScale };
@@ -45,37 +46,38 @@ export default class Boxscore extends Component {
 
     _renderPlayerNames = (player) => {
         return (
-            <Text 
+            <MyText 
+                weight={500}
                 numberOfLines={1} 
                 style={[styles.playerName, {fontWeight: player.isOnCourt ? 'bold' : null}]}>
                     {player.firstName.charAt(0)}. {player.lastName}
                     {
                         player.isOnCourt ? 
-                        <Text style={styles.playerPos}> ({player.pos})</Text> : null
+                        <MyText style={styles.playerPos}> ({player.pos})</MyText> : null
                     }
-            </Text>
+            </MyText>
         );
     }
 
     _renderTableHeaderStats = () => {
         return (
             <View style={{ flexDirection: 'row' }}>
-                <Text style={[styles.tableHeader, MIN_WIDTH]}>MIN</Text>
-                <Text style={[styles.tableHeader, NORMAL_WIDTH]}>PTS</Text>
-                <Text style={[styles.tableHeader, NORMAL_WIDTH]}>REB</Text>
-                <Text style={[styles.tableHeader, NORMAL_WIDTH]}>AST</Text>
-                <Text style={[styles.tableHeader, NORMAL_WIDTH]}>STL</Text>
-                <Text style={[styles.tableHeader, NORMAL_WIDTH]}>BLK</Text>
-                <Text style={[styles.tableHeader, PERCENT_WIDTH]}>FG</Text>
-                <Text style={[styles.tableHeader, PERCENT_WIDTH]}>FG%</Text>
-                <Text style={[styles.tableHeader, PERCENT_WIDTH]}>3P</Text>
-                <Text style={[styles.tableHeader, PERCENT_WIDTH]}>3P%</Text>
-                <Text style={[styles.tableHeader, PERCENT_WIDTH]}>FT</Text>
-                <Text style={[styles.tableHeader, PERCENT_WIDTH]}>FT%</Text>
-                <Text style={[styles.tableHeader, PERCENT_WIDTH]}>OREB</Text>
-                <Text style={[styles.tableHeader, PERCENT_WIDTH]}>DREB</Text>
-                <Text style={[styles.tableHeader, NORMAL_WIDTH]}>TO</Text>
-                <Text style={[styles.tableHeader, NORMAL_WIDTH]}>+/-</Text>
+                <MyText weight={700} style={[styles.tableHeader, MIN_WIDTH]}>MIN</MyText>
+                <MyText weight={700} style={[styles.tableHeader, NORMAL_WIDTH]}>PTS</MyText>
+                <MyText weight={700} style={[styles.tableHeader, NORMAL_WIDTH]}>REB</MyText>
+                <MyText weight={700} style={[styles.tableHeader, NORMAL_WIDTH]}>AST</MyText>
+                <MyText weight={700} style={[styles.tableHeader, NORMAL_WIDTH]}>STL</MyText>
+                <MyText weight={700} style={[styles.tableHeader, NORMAL_WIDTH]}>BLK</MyText>
+                <MyText weight={700} style={[styles.tableHeader, PERCENT_WIDTH]}>FG</MyText>
+                <MyText weight={700} style={[styles.tableHeader, PERCENT_WIDTH]}>FG%</MyText>
+                <MyText weight={700} style={[styles.tableHeader, PERCENT_WIDTH]}>3P</MyText>
+                <MyText weight={700} style={[styles.tableHeader, PERCENT_WIDTH]}>3P%</MyText>
+                <MyText weight={700} style={[styles.tableHeader, PERCENT_WIDTH]}>FT</MyText>
+                <MyText weight={700} style={[styles.tableHeader, PERCENT_WIDTH]}>FT%</MyText>
+                <MyText weight={700} style={[styles.tableHeader, PERCENT_WIDTH]}>OREB</MyText>
+                <MyText weight={700} style={[styles.tableHeader, PERCENT_WIDTH]}>DREB</MyText>
+                <MyText weight={700} style={[styles.tableHeader, NORMAL_WIDTH]}>TO</MyText>
+                <MyText weight={700} style={[styles.tableHeader, NORMAL_WIDTH]}>+/-</MyText>
             </View>
         )
     }
@@ -83,22 +85,22 @@ export default class Boxscore extends Component {
     _renderStats = (player) => {
         return (
             <View style={{ flexDirection: 'row' }}>
-                <Text style={[styles.tableData, MIN_WIDTH]}>{player.min}</Text>
-                <Text style={[styles.tableData, NORMAL_WIDTH]}>{player.points}</Text>
-                <Text style={[styles.tableData, NORMAL_WIDTH]}>{player.totReb}</Text>
-                <Text style={[styles.tableData, NORMAL_WIDTH]}>{player.assists}</Text>
-                <Text style={[styles.tableData, NORMAL_WIDTH]}>{player.steals}</Text>
-                <Text style={[styles.tableData, NORMAL_WIDTH]}>{player.blocks}</Text>
-                <Text style={[styles.tableData, PERCENT_WIDTH]}>{player.fgm}/{player.fga}</Text>
-                <Text style={[styles.tableData, PERCENT_WIDTH]}>{((player.fgm/player.fga)*100).toFixed(1)}%</Text>
-                <Text style={[styles.tableData, PERCENT_WIDTH]}>{player.tpm}/{player.tpa}</Text>
-                <Text style={[styles.tableData, PERCENT_WIDTH]}>{((player.tpm/player.tpa)*100).toFixed(1)}%</Text>
-                <Text style={[styles.tableData, PERCENT_WIDTH]}>{player.ftm}/{player.fta}</Text>
-                <Text style={[styles.tableData, PERCENT_WIDTH]}>{((player.ftm/player.fta)*100).toFixed(1)}%</Text>
-                <Text style={[styles.tableData, PERCENT_WIDTH]}>{player.offReb}</Text>
-                <Text style={[styles.tableData, PERCENT_WIDTH]}>{player.defReb}</Text>
-                <Text style={[styles.tableData, NORMAL_WIDTH]}>{player.turnovers}</Text>
-                <Text style={[styles.tableData, NORMAL_WIDTH]}>{player.plusMinus}</Text>
+                <MyText style={[styles.tableData, MIN_WIDTH]}>{player.min}</MyText>
+                <MyText style={[styles.tableData, NORMAL_WIDTH]}>{player.points}</MyText>
+                <MyText style={[styles.tableData, NORMAL_WIDTH]}>{player.totReb}</MyText>
+                <MyText style={[styles.tableData, NORMAL_WIDTH]}>{player.assists}</MyText>
+                <MyText style={[styles.tableData, NORMAL_WIDTH]}>{player.steals}</MyText>
+                <MyText style={[styles.tableData, NORMAL_WIDTH]}>{player.blocks}</MyText>
+                <MyText style={[styles.tableData, PERCENT_WIDTH]}>{player.fgm}/{player.fga}</MyText>
+                <MyText style={[styles.tableData, PERCENT_WIDTH]}>{((player.fgm/player.fga)*100).toFixed(1)}%</MyText>
+                <MyText style={[styles.tableData, PERCENT_WIDTH]}>{player.tpm}/{player.tpa}</MyText>
+                <MyText style={[styles.tableData, PERCENT_WIDTH]}>{((player.tpm/player.tpa)*100).toFixed(1)}%</MyText>
+                <MyText style={[styles.tableData, PERCENT_WIDTH]}>{player.ftm}/{player.fta}</MyText>
+                <MyText style={[styles.tableData, PERCENT_WIDTH]}>{((player.ftm/player.fta)*100).toFixed(1)}%</MyText>
+                <MyText style={[styles.tableData, PERCENT_WIDTH]}>{player.offReb}</MyText>
+                <MyText style={[styles.tableData, PERCENT_WIDTH]}>{player.defReb}</MyText>
+                <MyText style={[styles.tableData, NORMAL_WIDTH]}>{player.turnovers}</MyText>
+                <MyText style={[styles.tableData, NORMAL_WIDTH]}>{player.plusMinus}</MyText>
             </View>
         )
     }
@@ -132,17 +134,15 @@ export default class Boxscore extends Component {
                             style={{marginRight: 20}} 
                             active={this.state.homeSelected}
                             text={`${params.hTeam.tricode} ${params.hTeam.nickname}`} 
-                            handlePress={() => this.changeTeams(0)}
-                            backgroundColor={params.hTeam.primaryColor}/>
+                            handlePress={() => this.changeTeams(0)}/>
                         <Button 
                             active={!this.state.homeSelected}
                             text={`${params.vTeam.tricode} ${params.vTeam.nickname}`} 
-                            handlePress={() => this.changeTeams(1)}
-                            backgroundColor={params.vTeam.primaryColor}/>
+                            handlePress={() => this.changeTeams(1)}/>
                     </View>
                     <View style={{ flexDirection: 'row' }}>
                         <View style={[styles.playerContainer, PLAYER_WIDTH]}>
-                            <Text style={[styles.tableHeader, { textAlign: 'left' }]}>PLAYER</Text>
+                            <MyText weight={700} style={[styles.tableHeader, { textAlign: 'left' }]}>PLAYER</MyText>
                             <FlatList
                                 data={this.state.list}
                                 extraData={this.state.list}

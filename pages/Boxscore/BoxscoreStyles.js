@@ -6,11 +6,10 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 8
     },
     tableHeader: {
-        fontWeight: 'bold',
         color: '#888',
         marginBottom: 8,
         fontSize: 12,
-        textAlign: 'center'
+        textAlign: 'center',
     },
     tableData: {
         color: 'white',
@@ -40,11 +39,10 @@ export const styles = StyleSheet.create({
     },
     segmentContainer: {
         flexDirection: 'row', 
-        paddingBottom: 20,
-        paddingTop: 10, 
-        justifyContent: 'center',
-        marginBottom: 20,
+        paddingBottom: 15,
+        marginBottom: 10,
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderColor: '#333'
+        borderColor: '#333',
+        // justifyContent: 'space-between',
     }
 });

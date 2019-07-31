@@ -8,11 +8,10 @@ export const styles = StyleSheet.create({
         borderRadius: 15,
         padding: 15,
         borderWidth: 1,
-        borderColor: '#2f2f2f',
+        borderColor: '#2B2C2E',
         overflow: 'hidden'
     },
     cardTitle: {
-        paddingTop: 5,
         paddingBottom: 15,
         paddingHorizontal: 5,
         borderBottomColor: '#333',
@@ -22,13 +21,13 @@ export const styles = StyleSheet.create({
     },
     title: {
         flex: 1,
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         color: 'white',
         textTransform: 'uppercase'
     },
     subtitle: {
         flex: 1,
-        fontWeight: 'bold',
+        // fontWeight: 'bold',
         color: 'gray',
         fontSize: 12,
         alignSelf: 'center',

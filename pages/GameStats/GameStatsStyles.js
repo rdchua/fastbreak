@@ -77,27 +77,35 @@ export const styles = StyleSheet.create({
     /**
      * !Per quarter styles
      */
+    teamRecord: {
+        fontSize: 12,
+        color: '#aaa'
+    },
     quarterRow: {
-        flexDirection: 'row',
+        // flexDirection: 'row',
+        borderWidth: 1,
         marginVertical: 0,
     },
     quarterTeamImage: {
-        height: 25,
-        width: 25,
-        marginRight: 5
+        alignSelf: 'center',
+        height: 60,
+        width: 60,
     },
     quarterTeamName: {
         flex: 4,
+        // fontWeight: 'bold',
         alignSelf: 'center',
+        textAlign: 'center',
         color: 'white',
         // fontWeight: 'bold'
     },
     quarterVal: {
+        paddingVertical: 1,
         alignSelf: 'center',
         textAlign: 'center',
         // fontWeight: 'bold',
         color: 'white',
-        flex: 0.65
+        // flex: 0.65
     },
     /**
      * !Toast Styles
@@ -116,15 +124,17 @@ export const styles = StyleSheet.create({
      * !Article Styles
      */
     articleTitle: {
-        fontSize: 15,
-        lineHeight: 22,
-        fontWeight: 'bold',
+        fontSize: 17,
+        lineHeight: 24,
         color: 'white'
     },
     articleBody: {
         lineHeight: 20,
         color: '#aaa',
         marginTop: 10,
+    },
+    quarterly: {
+        flexDirection: 'row',
     },
     /**
      * !Team Leader Styles

@@ -10,7 +10,9 @@ import ScrollableTabView, { ScrollableTabBar } from 'react-native-scrollable-tab
 import GameStats from '../GameStats/GameStats';
 import Boxscore from '../Boxscore/Boxscore';
 import PlayByPlay from '../PlayByPlay/PlayByPlay';
+import GameFeed from '../GameFeed/GameFeed';
 import Loading from '../../components/Loading/Loading';
+import MyText from '../../components/MyText/MyText';
 
 export default class GameDetails extends Component {
 
@@ -24,14 +26,17 @@ export default class GameDetails extends Component {
 
     static navigationOptions = ({ navigation }) => {
         const { params } = navigation.state;
+        console.log(params);
         return {
             headerTitle: (
                 <View style={styles.header}>
-                    <Image style={styles.teamImage} source={params.hTeamImage}/>
-                    <Text style={styles.score}>111</Text>
-                    <Text style={styles.clock}>Q1 11:49</Text>
-                    <Text style={styles.score}>111</Text>
-                    <Image style={styles.teamImage} source={params.vTeamImage}/>
+                    {/* <Image style={styles.teamImage} source={params.hTeamImage}/> */}
+                    <MyText weight={700} style={styles.score}>{params.hTeam.tricode}</MyText>
+                    <MyText weight={700} style={styles.score}>{params.hTeamScore.score  }</MyText>
+                    <MyText weight={700} style={styles.clock}>FINAL</MyText>
+                    <MyText weight={700} style={styles.score}>{params.vTeamScore.score}</MyText>
+                    <MyText weight={700} style={styles.score}>{params.vTeam.tricode}</MyText>
+                    {/* <Image style={styles.teamImage} source={params.vTeamImage}/> */}
                 </View>
             ),
             /* These values are used instead of the shared configuration! */
@@ -54,22 +59,6 @@ export default class GameDetails extends Component {
     componentDidMount() {
         this.setState({ loading: true });
         this.fetchStats();
-        this.fetchPbp();
-    }
-
-    fetchPbp() {
-        const params = this.props.navigation.state.params;
-        let promises = [];
-        for(let i = 1; i <= params.period.maxRegular; i++) {
-            promises.push(fetch(api.PBP(params.date, params.gameId, i)));
-        }
-        Promise.all(promises).then(responses => {
-            let pbp = [];
-            responses.forEach(async (res) => {
-                pbp.push(await res.json());
-            });
-            this.setState({ pbpLoading: false, pbp: pbp });
-        });
     }
 
     fetchStats() {
@@ -90,6 +79,10 @@ export default class GameDetails extends Component {
             });
     }
 
+    onContentScroll= (e) => {
+        console.log(e.nativeEvent.contentOffset.y)
+    }
+
     render() {
         const params = this.props.navigation.state.params;
         if(this.state.loading) {
@@ -101,41 +94,43 @@ export default class GameDetails extends Component {
                 <ScrollableTabView
                     initialPage={0}    
                     page={10}
-                    style={{ marginTop: -10 }}
+                    style={{ marginTop: -20 }}
                     tabBarPosition='top'
                     tabBarActiveTextColor='white'
                     tabBarBackgroundColor='#1F2022'
-                    tabBarTextStyle={{ paddingRight: 10, paddingLeft: 10 }}
                     tabBarUnderlineStyle={{ backgroundColor: '#1988F4', height: 2, borderRadius: 9 }}
                     tabBarInactiveTextColor='rgba(255,255,255,0.2)'
                     prerenderingSiblingsNumber={2}
                     tabBarTextStyle={{
                         fontSize: 12, 
                         letterSpacing: 0.7,
-                        fontWeight: 'bold', 
-                        marginTop: 10
+                        marginTop: 10,
+                        // fontFamily: 'SF-Pro-Display-Regular'
                     }}
                     renderTabBar={() => 
                         <ScrollableTabBar
                             style={{ borderColor: '#2f2f2f', borderBottomWidth: 1 }} 
                             backgroundColor='#121314' />}>
                             <GameStats
+                                tabLabel="STATS"
                                 params={params} 
                                 gameData={this.state.gameData}
                                 gameStats={this.state.gameStats}
                                 previousMatchup={this.state.previousMatchup}
-                                tabLabel="STATS"/>
-                            <Boxscore 
+                                handleScroll={this.onContentScroll}/>
+                            <Boxscore
+                                tabLabel="BOX SCORE"
                                 params={params}
                                 gameStats={this.state.gameStats}
-                                tabLabel="BOX SCORE"/>
+                                handleScroll={this.onContentScroll}/>
                             <PlayByPlay
-                                loading={this.state.pbpLoading}
-                                pbp={this.state.pbp} 
-                                tabLabel="PLAYS"/>
-                            <GameStats 
+                                tabLabel="PLAYS"
+                                params={params}
+                                handleScroll={this.onContentScroll}/>
+                            <GameFeed
+                                tabLabel="FEED"
                                 params={params} 
-                                tabLabel="FEED"/>
+                                handleScroll={this.onContentScroll}/>
                 </ScrollableTabView>
             </ScrollView>
         );

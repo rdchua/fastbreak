@@ -43,19 +43,23 @@ export const styles = StyleSheet.create({
         marginBottom: 7,
         marginLeft: 7,
         color: 'white',
-        fontSize: 16
+        fontSize: 15
     },
     statsContainer: {
+        marginLeft: 7,
         flexDirection: 'row',
     },
     statValue: {
         color: 'white',
-        fontWeight: 'bold',
-        fontSize: 15,
-        textAlign: 'center'
+        // fontWeight: 'bold',
+        fontSize: 20,
+        textAlign: 'left',
+        // borderRightWidth: 2,
+        // borderColor: '#333',
     },
     statName: {
-        textAlign: 'center',
+        fontSize: 12,
+        textAlign: 'left',
         color: '#aaa',
     },
     playerImageContainer: {
@@ -64,7 +68,8 @@ export const styles = StyleSheet.create({
         alignItems: 'center'
     },
     stat: {
-        flex: 2
+        flex: 2,
+        paddingRight: 10
     },
     playerNumber: {
         color: '#888',
