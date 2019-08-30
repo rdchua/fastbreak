@@ -39,7 +39,7 @@ export default class StatCompare extends Component {
                             )}
                             position='right'
                             backgroundColor='#333'
-                            barColor={this.isLoser(props.hTeamStat, props.vTeamStat) ? utils.hexToRgba(props.hTeamColor, 0.2) : props.hTeamColor}/>
+                            barColor={this.isLoser(props.hTeamStat, props.vTeamStat) ? utils.hexToRgba(props.hTeamColor, 1) : props.hTeamColor}/>
                         <View style={{ marginHorizontal: 5 }}></View>
                         <ProgressBar
                             progress={this.calculateBarProgress(
@@ -48,7 +48,7 @@ export default class StatCompare extends Component {
                             )}
                             position='left'
                             backgroundColor='#333'
-                            barColor={this.isLoser(props.vTeamStat, props.hTeamStat) ? utils.hexToRgba(props.vTeamColor, 0.2) : props.vTeamColor}/>
+                            barColor={this.isLoser(props.vTeamStat, props.hTeamStat) ? utils.hexToRgba(props.vTeamColor, 1) : props.vTeamColor}/>
                     </View>
                 </View>
             </View>

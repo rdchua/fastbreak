@@ -2,7 +2,18 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { styles } from './CardStyles';
-import MyText from '../../components/MyText/MyText'
+import MyText from '../../components/MyText/MyText';
+
+const fadeIn = {
+    from: {
+      opacity: 0,
+      translateY: 10
+    },
+    to: {
+      opacity: 1,
+      translateY: 0
+    },
+};
 
 export default class Card extends React.Component {
 
@@ -27,12 +38,12 @@ export default class Card extends React.Component {
         return (
             <Animatable.View
                 style={[styles.card, props.style]} 
-                animation="fadeInUp"
+                animation={fadeIn}
                 duration={300}
                 delay={100}>
                     {this._renderTitle(props.title, props.subtitle)}
                     <Animatable.View
-                        animation="fadeInUp"
+                        animation={fadeIn}
                         duration={300}
                         delay={100}>
                         {this.props.children}

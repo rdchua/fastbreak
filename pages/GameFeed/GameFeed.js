@@ -10,6 +10,8 @@ const utils = require('./../../utilities/helper');
  */
 import MyText from './../../components/MyText/MyText';
 import Tweet from '../../components/Tweet/Tweet';
+import Card from '../../components/Card/Card';
+import reactotron from 'reactotron-react-native';
 
 export default class GameFeed extends Component {
 
@@ -47,7 +49,6 @@ export default class GameFeed extends Component {
                 loading: false, 
                 refreshing: false 
             });
-            console.log(this.state);
         }).catch((err) => {
             console.log(err);
         });
@@ -60,9 +61,8 @@ export default class GameFeed extends Component {
     render() {
         return (
             <FlatList
-                contentContainerStyle={{ paddingHorizontal: 8 }}
                 removeClippedSubviews={true}
-                style={{paddingVertical: 5}}
+                style={{paddingVertical: 50, paddingHorizontal: 8}}
                 data={this.state.feed}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({item}) =>  this.renderFeedItem(item)

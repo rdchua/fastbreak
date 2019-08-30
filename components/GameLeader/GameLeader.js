@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 import { styles } from './GameLeaderStyles';
 import * as api from './../../api/data_nba_endpoints';
-import MyText from '../../components/MyText/MyText'
+import MyText from '../../components/MyText/MyText';
 
 export default class GameLeader extends Component {
 
     constructor(props){
         super(props);
+    }
+
+    gotoPlayerProfile() {
+        const { player, teamColor, teamImage } = this.props;
+        let parameters = {
+            teamImage: teamImage,
+            teamColor: teamColor,
+            player: player
+        }
+        this.props.navigation.navigate('PlayerProfile', parameters);
     }
 
     render() {
@@ -16,9 +26,9 @@ export default class GameLeader extends Component {
             <View style={[styles.content, this.props.style]}>
                 <View style={styles.contentContainer}>
                     <View style={styles.player}>
-                        <View style={styles.playerImageContainer}>
-                            <Image source={{ uri: api.HEADSHOT(player.personId) }} style={[styles.playerImage, {backgroundColor: teamColor}]}/>
-                        </View>
+                        <TouchableOpacity onPress={() => this.gotoPlayerProfile()} style={[styles.playerImageContainer, { backgroundColor: teamColor }]}>
+                            <Image source={{ uri: api.HEADSHOT(player.personId) }} style={[styles.playerImage]}/>
+                        </TouchableOpacity>
                         <View style={styles.playerDetails}>
                             <MyText style={styles.playerName}>{player.firstName} {player.lastName}</MyText>
                             <View style={styles.statsContainer}>

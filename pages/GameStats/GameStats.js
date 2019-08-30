@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Image, ScrollView, Text } from 'react-native';
+import { View, Image, ScrollView, TouchableOpacity, Animated } from 'react-native';
 import { styles } from './GameStatsStyles';
 import moment from 'moment';
 import Toast, {DURATION} from 'react-native-easy-toast';
@@ -31,6 +31,7 @@ export default class GameStats extends Component {
 
     componentDidMount() {
         const props = {...this.props}
+        console.log(props);
         if(props.gameData) {
             if(props.gameData.isRecapArticleAvail) {
                 this.fetchRecapArticle(props.params.date, props.params.gameId);
@@ -131,46 +132,61 @@ export default class GameStats extends Component {
         );
     }
 
+    gotoTeamProfile(isHomeTeam) {
+        const { params, navigation } = this.props;
+        let parameters;
+        if(isHomeTeam) {
+            parameters = {
+                team: params.hTeam,
+                teamImage: params.hTeamImage,
+                navigation: navigation
+            }
+        } else {
+            parameters = {
+                team: params.vTeam,
+                teamImage: params.vTeamImage,
+                navigation: navigation
+            }
+        }
+        this.props.navigation.navigate('TeamProfile', parameters);
+    }
+
     _renderQuarterly = () => {
         const { params } = this.props;
+        console.log(params);
+        const textColorHome = params.hTeamScore.score > params.vTeamScore.score ? '#fff' : '#aaa';
+        const textWeightHome = params.hTeamScore.score > params.vTeamScore.score ? 700 : 400;
+        const textColorVisitor = params.vTeamScore.score > params.hTeamScore.score ? '#fff' : '#aaa';
+        const textWeightVisitor = params.vTeamScore.score > params.hTeamScore.score ? 700 : 400;
         return (
             <View style={styles.quarterly}>
-                <View style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
+                <TouchableOpacity onPress={() => this.gotoTeamProfile(true)} style={{flex: 2, alignItems: 'center', justifyContent: 'center'}}>
                     <MyText weight={600} style={styles.quarterTeamName}>{params.hTeam.nickname}</MyText>
-                    <Image source={params.hTeamImage} style={styles.quarterTeamImage}/>
-                    <MyText style={styles.teamRecord}>(42 - 20)</MyText>
-                </View>
+                        <Image source={params.hTeamImage} style={styles.quarterTeamImage}/>
+                    <MyText style={styles.teamRecord}>({params.hTeamScore.win} - {params.vTeamScore.loss})</MyText>
+                </TouchableOpacity>
                 <View style={{flex: 1}}>
-                    {this._renderQuarterPoints(params.hTeamScore.linescore)}
+                    {this._renderQuarterPoints(params.hTeamScore.linescore, params.vTeamScore.linescore)}
+                    <MyText
+                        weight={textWeightHome} 
+                        style={[styles.quarterVal, { color: textColorHome }]}>{params.hTeamScore.score}</MyText>
                 </View>
                 <View style={{flex: 1}}>
                     {this._renderQuarters(params.hTeamScore.linescore)}
+                    <MyText style={[styles.quarterVal, {color: '#666'}]}>T</MyText>
                 </View>
                 <View style={{ flex: 1}}>
-                    {this._renderQuarterPoints(params.vTeamScore.linescore)}
+                    {this._renderQuarterPoints(params.vTeamScore.linescore, params.hTeamScore.linescore)}
+                    <MyText
+                        weight={textWeightVisitor} 
+                        style={[styles.quarterVal, { color: textColorVisitor }]}>{params.vTeamScore.score}</MyText>
                 </View>
-                <View style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
+                <TouchableOpacity onPress={() => this.gotoTeamProfile(false)}style={{ flex: 2, alignItems: 'center', justifyContent: 'center' }}>
                     <MyText weight={600} style={styles.quarterTeamName}>{params.vTeam.nickname}</MyText>
-                    <Image source={params.vTeamImage} style={styles.quarterTeamImage}/>
-                    <MyText style={styles.teamRecord}>(42 - 20)</MyText>
-                </View>
+                        <Image source={params.vTeamImage} style={styles.quarterTeamImage}/>
+                    <MyText style={styles.teamRecord}>({params.vTeamScore.win} - {params.vTeamScore.loss})</MyText>
+                </TouchableOpacity>
             </View>
-            // <View style={styles.quarterly}>
-            //     <View style={styles.quarterRow}>
-            //         <View style={{ flexDirection: 'row', flex: 4 }}>
-            //             <Image source={params.hTeamImage} style={styles.quarterTeamImage}/>
-            //             <MyText style={styles.quarterTeamName}>{params.hTeam.tricode} {params.hTeam.nickname}</MyText>
-            //         </View>
-            //         {this._renderQuarterPoints(params.hTeamScore.linescore)}
-            //     </View>
-            //     <View style={styles.quarterRow}>
-            //         <View style={{ flexDirection: 'row', flex: 4 }}>
-            //             <Image source={params.vTeamImage} style={styles.quarterTeamImage}/>
-            //             <MyText style={styles.quarterTeamName}>{params.vTeam.tricode} {params.vTeam.nickname}</MyText>
-            //         </View>
-            //         {this._renderQuarterPoints(params.vTeamScore.linescore)}
-            //     </View>
-            // </View>
         )
     }
 
@@ -186,7 +202,10 @@ export default class GameStats extends Component {
         if (j == 3 && k != 13) {
             return i + "rd";
         }
-        return i + "th";
+        if (j == 4) {
+            return i + "th";
+        }
+        return "OT" + (i-4)
     }
 
     _renderPageLoading = () => {
@@ -200,16 +219,20 @@ export default class GameStats extends Component {
         )
     }
 
-    _renderQuarterPoints = (linescore) => {
-        let quarters = linescore.map((quarter) => {
-            return <MyText style={styles.quarterVal}>{quarter.score}</MyText>;
+    _renderQuarterPoints = (linescore, opponent) => {
+        let quarters = linescore.map((quarter, i) => {
+            const textColor = quarter.score > opponent[i].score ? '#fff' : '#888';
+            const textWeight = quarter.score > opponent[i].score ? 700 : 400
+            return <MyText 
+                        weight={textWeight}
+                        style={[styles.quarterVal, {color: textColor}]}>{quarter.score}</MyText>;
         });
         return quarters;
     }
 
     _renderQuarters = (linescore) => {
         let quarters = linescore.map((quarter, index) => {
-            return <MyText style={[styles.quarterVal, {color: 'gray'}]}>{this.toOrdinal(index+1)}</MyText>;
+            return <MyText style={[styles.quarterVal, {color: '#666'}]}>{this.toOrdinal(index+1)}</MyText>;
         });
         return quarters;
     }
@@ -235,14 +258,26 @@ export default class GameStats extends Component {
         )
     }
 
+    onContainerLayout = (e) => {
+        const { height } = e.nativeEvent.layout;
+        this.props.setChildHeight(height);
+    }
+
+
     render() {
         const { hLeader, vLeader } = this.state;
-        const { params, gameStats, gameData, handleScroll } = this.props;
+        const { params, gameStats, gameData, handleScroll, headerHeight, scrollY } = this.props;
         return (
             <ScrollView
-                onScroll={handleScroll}
-                contentContainerStyle={{ paddingTop: 5, paddingBottom: 30 }} 
-                style={{ paddingHorizontal: 8 }}>
+                onLayout={this.onContainerLayout}
+                scrollEventThrottle={16}
+                onScroll={
+                    Animated.event([{nativeEvent: {contentOffset: {
+                        y: scrollY}}
+                    }], { listener: handleScroll})
+                }
+                contentContainerStyle={{ paddingTop: headerHeight + 5, paddingBottom: 20 }} 
+                style={{ paddingHorizontal: 5 }}>
                 <Toast
                     ref="toast"
                     style={styles.toast}
@@ -254,9 +289,9 @@ export default class GameStats extends Component {
                     MyTextStyle={styles.toastMyText}
                 />
 
-                <Card>
+                {/* <Card>
                     {this._renderQuarterly()}
-                </Card>
+                </Card> */}
 
                 <Card>
                     {this._renderArticle()}
@@ -266,12 +301,14 @@ export default class GameStats extends Component {
                     hLeader ? 
                     <Card title="Top players">
                         <GameLeader
+                            navigation={this.props.navigation}
                             teamImage={params.hTeamImage}
                             teamColor={params.hTeam.primaryColor}
                             player={hLeader}
                         />
                         <View style={styles.itemDivider}></View>
                         <GameLeader
+                            navigation={this.props.navigation}
                             style={{marginTop: 10, paddingBottom: 10}}
                             teamImage={params.vTeamImage}
                             teamColor={params.vTeam.primaryColor}

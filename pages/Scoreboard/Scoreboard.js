@@ -5,6 +5,8 @@ import * as api from '../../api/data_nba_endpoints';
 import * as api2 from '../../api/stats_nba_endpoints';
 import moment from 'moment';
 import Toast, {DURATION} from 'react-native-easy-toast';
+import Reactotron from 'reactotron-react-native';
+import axios from 'axios';
 
 /**
  * Import custom components
@@ -18,32 +20,41 @@ export default class Scoreboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: true,
             isRefreshing: false
         };
         this.fetchData();
     }
     
     fetchData() {
-        Promise.all([
-            fetch(api.SCOREBOARD(this.props.date))
-                .then((response) => response.json()),
-            fetch(api2.SCOREBOARD(moment(this.props.date).format('MM/DD/YYYY')), api2.headers)
-                .then((response) => response.json())
-        ]).then(([api1, api2]) => {
-            this.setState({
-                games: api1.games,
-                gamesHeaders: api2.resultSets[0].rowSet,
-                gamesLineScore: api2.resultSets[1].rowSet,
-                gamesSeriesStandings: api2.resultSets[2].rowSet,
-                gamesLastMeetings: api2.resultSets[3].rowSet,
-                gamesTeamLeaders: api2.resultSets[7].rowSet,
-                gamesWinProbabilities: api2.resultSets[9].rowSet,
-                loading: false 
+        axios.get(api.SCOREBOARD(this.props.date))
+            .then((data) => {
+                this.setState({ 
+                    games: data.data.games,
+                    loading: false
+                });
+            })
+            .catch((err) => {
+                Reactotron.log({ display: 'Error fetching scoreboard from data.nba.net', value: err});
+                this.refs.toast.show('Error fetching data. Check network connection.', DURATION.LENGTH_LONG);
             });
-        }).catch((err) => {
-            this.refs.toast.show('Error fetching data. Check network connection.', DURATION.LENGTH_LONG);
-            console.log(err)
-        });
+        const url = api2.SCOREBOARD(moment(this.props.date).format('MM/DD/YYYY'))
+        fetch(url, api2.headers)
+            .then((response) => response.json())
+            .then((data) => {
+                this.setState({
+                    gamesHeaders: data.resultSets[0].rowSet,
+                    gamesLineScore: data.resultSets[1].rowSet,
+                    gamesSeriesStandings: data.resultSets[2].rowSet,
+                    gamesLastMeetings: data.resultSets[3].rowSet,
+                    gamesTeamLeaders: data.resultSets[7].rowSet,
+                    gamesWinProbabilities: data.resultSets[9].rowSet
+                });
+            })
+            .catch((err) => {
+                Reactotron.log({ display: 'Error fetching scoreboard from stats.nba.com', value: err});
+                this.refs.toast.show('Error fetching data. Check network connection.', DURATION.LENGTH_LONG);
+            });
     }
 
     onRefresh() {
@@ -54,8 +65,7 @@ export default class Scoreboard extends Component {
     }
 
     render() {
-        const { games } = this.state;
-        if(!games) {
+        if(this.state.loading) {
             return (<Loading/>)
         }
         return (

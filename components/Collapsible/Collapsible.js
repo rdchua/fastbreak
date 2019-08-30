@@ -4,6 +4,12 @@ import Icon from 'react-native-vector-icons/AntDesign';
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 import { styles } from './CollapsibleStyles';
 import MyText from '../../components/MyText/MyText';
+import {
+    Placeholder,
+    PlaceholderLine,
+    Fade
+} from "rn-placeholder";
+import reactotron from 'reactotron-react-native';
 
 export default class Collapsible extends Component {
 
@@ -79,7 +85,7 @@ export default class Collapsible extends Component {
          */
         this.setState({
             minHeight: event.nativeEvent.layout.height + 21,
-            animation: new Animated.Value(event.nativeEvent.layout.height + 20)
+            animation: new Animated.Value(this.props.isCollapsible ? event.nativeEvent.layout.height + 20 : event.nativeEvent.layout.height - 20)
         });
     }
 
@@ -130,9 +136,9 @@ export default class Collapsible extends Component {
         const rotate = {
             transform: [{ rotateX: spin }],
         };
-        let { status, hTeam, vTeam, hTeamImage, vTeamImage, hTeamIsWinner, gameTime, nugget, hTeamScore, vTeamScore, hTeamLeaders, vTeamLeaders, nav } = this.props;
+        let { status, hTeam, vTeam, hTeamImage, vTeamImage, hTeamIsWinner, gameTime, nugget, hTeamScore, vTeamScore, hTeamLeaders, vTeamLeaders, nav, isCollapsible, style } = this.props;
         return (
-            <Animated.View style={[styles.content, {height: this.state.animation ? this.state.animation : 175}]}>
+            <Animated.View style={[styles.content, {height: this.state.animation ? this.state.animation : 175}, style]}>
                 <View onLayout={this._setMinHeight}>
                     <TouchableOpacity onPress={() => this.navigateToGameDetails(nav)} style={styles.contentContainer}>
                         <View style={styles.scores}>
@@ -160,20 +166,31 @@ export default class Collapsible extends Component {
                             </View>
                             <TouchableOpacity style={{ flex: 1 }} onPress={this.toggle}>
                                 <View style={styles.gameActions}>
-                                    <AnimatedIcon style={[styles.gameAlert, rotate]} name="down" size={18} color="#888" />
+                                    <AnimatedIcon style={[styles.gameAlert, rotate]} name={isCollapsible ? "down" : "right"} size={18} color="#888" />
                                 </View>
                             </TouchableOpacity>
                         </View>
                     </TouchableOpacity>
                     {
-                        nugget.MyText !== '' ?
+                        nugget.text !== '' ?
                         <MyText italic={true} style={styles.nugget}>{nugget.text}</MyText> : null
                     }
                 </View>
                 <View style={styles.collapsibleView} onLayout={this._setMaxHeight}>
-                    {this._renderTeamLeaders(hTeamLeaders[6], vTeamLeaders[6], hTeamLeaders[7], vTeamLeaders[7], 'PTS')}
-                    {this._renderTeamLeaders(hTeamLeaders[9], vTeamLeaders[9], hTeamLeaders[10], vTeamLeaders[10], 'REB')}
-                    {this._renderTeamLeaders(hTeamLeaders[12], vTeamLeaders[12], hTeamLeaders[13], vTeamLeaders[13], 'AST')}
+                    {
+                        isCollapsible && hTeamLeaders && vTeamLeaders ?
+                        <View>
+                            {this._renderTeamLeaders(hTeamLeaders[6], vTeamLeaders[6], hTeamLeaders[7], vTeamLeaders[7], 'PTS')}
+                            {this._renderTeamLeaders(hTeamLeaders[9], vTeamLeaders[9], hTeamLeaders[10], vTeamLeaders[10], 'REB')}
+                            {this._renderTeamLeaders(hTeamLeaders[12], vTeamLeaders[12], hTeamLeaders[13], vTeamLeaders[13], 'AST')}
+                        </View> : 
+                        <Placeholder
+                            Animation={Fade}>
+                                <PlaceholderLine width={80} style={{ backgroundColor: 'black' }}/>
+                                <PlaceholderLine style={{ backgroundColor: 'black' }}/>
+                                <PlaceholderLine width={30} style={{ backgroundColor: 'black' }}/>
+                        </Placeholder>
+                    }
                 </View>
             </Animated.View>
         );

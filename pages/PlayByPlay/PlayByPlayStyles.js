@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
         flex: 1,
         paddingTop: 10, 
         marginBottom: 20,
-        paddingHorizontal: 8
+        paddingHorizontal: 5
     },
     segmentContainer: {
         flex: 1,
@@ -15,6 +15,8 @@ export const styles = StyleSheet.create({
         backgroundColor: '#1F2022',
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderColor: '#333',
+        justifyContent: 'space-between',
+        // justifyContent: 'center',
         elevation: 4
     },
     sgementButton: {
@@ -26,7 +28,8 @@ export const styles = StyleSheet.create({
     row: {
         // borderBottomWidth: StyleSheet.hairlineWidth,
         // borderColor: '#333',
-        paddingVertical: 10
+        flexDirection: 'row',
+        paddingVertical: 8
     },
     playContainer: {
         // flexDirection: 'row', 
@@ -64,9 +67,17 @@ export const styles = StyleSheet.create({
         borderBottomRightRadius: 4,
         marginLeft: 0.5
     },
+    clockContainer: {
+        borderRadius: 3,
+        marginRight: 15,
+        height: 28,
+        justifyContent: 'center',
+    },
     clock: {
-        width: 45,
+        width: 60,
         color: '#fff',
+        textAlign: 'center',
+        fontSize: 12
     },
     imageContainer: {
         width: 65
@@ -80,10 +91,9 @@ export const styles = StyleSheet.create({
     },
     play: {
         flex: 2,
-        fontSize: 13,
-        paddingRight: 50,
-        marginLeft: -15,
+        fontSize: 14,
+        // paddingRight: 8,
         alignSelf: 'center',
-        color: '#aaa',
+        color: '#fff',
     }
 })

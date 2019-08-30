@@ -36,9 +36,7 @@ export default class PlayByPlay extends Component {
 
     getButtonStyle() {
         return {
-            paddingHorizontal: 0, 
-            marginHorizontal: 5,
-            marginRight: 20
+            paddingHorizontal: 25
         }
     }
 
@@ -87,20 +85,25 @@ export default class PlayByPlay extends Component {
 
     _renderPlay = (play) => {
         let teamImage;
+        let team;
         if(play.teamId == this.props.params.hTeam.teamId) {
+            team = utils.getTeam(play);
             teamImage = utils.getTeamImage(this.props.params.hTeam.tricode);
         } else if(play.teamId == this.props.params.vTeam.teamId) {
+            team = utils.getTeam(play);
             teamImage = utils.getTeamImage(this.props.params.vTeam.tricode);
         }
         return (
             <View style={styles.row}>
-                <MyText weight={700} style={styles.clock}>{play.clock} {(play.eventMsgType == 1 || play.eventMsgType == 3) ? `| ${play.hTeamScore} - ${play.vTeamScore}` : null}</MyText>
-                <View style={styles.imageContainer}>
+                <View style={[styles.clockContainer, {backgroundColor: team ? team.primaryColor: '#fff'}]}>
+                    <MyText weight={500} style={[styles.clock, {color: team ? '#fff': '#000'}]}>{play.clock}</MyText>
+                </View>
+                {/* <View style={styles.imageContainer}>
                 {
                     teamImage ?
                     <Image source={teamImage} style={styles.image} /> : null
                 }
-                </View>
+                </View> */}
                 <MyText style={styles.play}>{this.formatPlay(play.description)}</MyText>
             </View>
         )
@@ -116,7 +119,7 @@ export default class PlayByPlay extends Component {
             return <Loading/>
         }
         return (
-            <View style={styles.contentContainer}>
+            <View style={[styles.contentContainer, { paddingTop: 50 }]}>
                 <Card>
                     <FlatList
                         ListHeaderComponent={

@@ -4,7 +4,7 @@ const v1 = 'v1'
 const year = '2019';
 
 export const TEAMS = `${base_url}/${v}/teams.json`;
-export const PLAYERS = `${base_url}/${v}/${year}/players.json`;
+export const PLAYERS = `${base_url}/${v1}/${year}/players.json`;
 
 export const SCOREBOARD = (date) => {
     return `${base_url}/${v}/${date}/scoreboard.json`;
@@ -24,6 +24,14 @@ export const RECAP_ARTICLE = (date, gameId) => {
 
 export const PBP = (date, gameId, period) => {
     return `${base_url}/v1/${date}/${gameId}_pbp_${period}.json`;
+}
+
+export const TEAM_SCHEDULE = (urlName) => {
+    return `${base_url}/v1/2018/teams/${urlName}/schedule.json`;
+}
+
+export const TEAM_ROSTER = (teamUrlName) => {
+    return `${base_url}/v1/2019/teams/${teamUrlName}/roster.json`
 }
 
 export const HEADSHOT = (personId) => {

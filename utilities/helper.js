@@ -1,7 +1,14 @@
-import teams from  './../data/teams.json';
+/* eslint-disable radix */
+/* eslint-disable global-require */
+/* eslint-disable no-undef */
+/* eslint-disable camelcase */
 import moment from 'moment';
 import Store from 'react-native-simple-store';
-import * as twitterAPI from './../api/twitter_endpoints';
+import _ from 'underscore';
+import * as twitterAPI from "../api/twitter_endpoints";
+import * as nbaAPI from "../api/data_nba_endpoints";
+import reactotron from 'reactotron-react-native';
+import teams from  "../data/teams";
 
 export const headers = {
     headers: new Headers({
@@ -11,6 +18,7 @@ export const headers = {
 }
 
 export const twitterAuth = fetch(twitterAPI.oAuth, twitterAPI.authHeaders).then((response) => response.json());
+export const leaguePlayers = fetch(nbaAPI.PLAYERS).then((response) => response.json());
 
 export const getTwitterToken = 
     Store.get('twitter_token').then((twitter_token) => {
@@ -22,30 +30,56 @@ export const getTwitterToken =
         } else {
             return twitter_token;
         }
-    })
+    });
+
+export const loadPlayers = 
+    leaguePlayers.then((data) => {
+        Store.get('players').then((response) => {
+            if(!response) {
+                Store.push('players', data.league.standard);
+            } else {
+                Store.delete('players');
+                Store.push('players', data.league.standard);
+            }
+        })
+    });
+
+export const getPlayers =
+    Store.get('players').then((players) => {
+        return players[0];
+    });
+
+export const getPlayer = (players, personId) => {
+    const found = players.find((currPlayer) => {
+        return currPlayer.personId === personId;
+    });
+    if(found) return found;
+    return {};
+}
 
 export const getTeam = (team) => {
     let found = teams.find(currTeam => {
-        return currTeam.teamId === team.teamId;
+        return parseInt(currTeam.teamId) === parseInt(team.teamId);
     });
-    if(found) return found;
-    else {
-        return found = {
-            isNBAFranchise: false,
-            primaryColorRgba: "rgba(85,85,85,1)",
-            city: "",
-            altCityName: "",
-            fullName: "",
-            tricode: team.triCode,
-            teamId: "",
-            nickname: "Team",
-            urlName: "",
-            confName: "",
-            divName: "",
-            primaryColor: "#555",
-            twitterName: ""
-        }
+    if(found) {
+        return found;
     }
+    found = {
+        isNBAFranchise: false,
+        primaryColorRgba: "rgba(85,85,85,1)",
+        city: "",
+        altCityName: "",
+        fullName: "",
+        tricode: team.triCode,
+        teamId: "",
+        nickname: "Team",
+        urlName: "",
+        confName: "",
+        divName: "",
+        primaryColor: "#555",
+        twitterName: ""
+    }
+    return found;
 }
 
 export const getGameTime = (status, clock, period, startTimeUTC) => {
@@ -64,15 +98,17 @@ export const getGameTime = (status, clock, period, startTimeUTC) => {
         case 1: {
             return moment(startTimeUTC).local().format('hh:mm a');
         }
+        default: {
+            return ''
+        }
     }
 }
 
 export const isWinner = (thisTeam, otherTeam) => {
     if(thisTeam > otherTeam) {
         return true;
-    } else {
-        return false;
-    }
+    } 
+    return false;
 }
 
 export const hexToRgba = (hex, alpha) => {

@@ -3,6 +3,7 @@ import {Image, StyleSheet, Text, View, FlatList, TouchableOpacity} from 'react-n
 import Collapsible from '../Collapsible/Collapsible';
 import Card from '../Card/Card';
 import {styles} from './GamesStyles';
+import reactotron from 'reactotron-react-native';
 
 const utils = require('../../utilities/helper');
 
@@ -20,6 +21,8 @@ export default class Games extends Component {
     }
 
     _renderItem = ({item}) => {
+        const { gamesTeamLeaders } = this.props;
+        // reactotron.log({display: 'gameteamleaders', value: gamesTeamLeaders});
         const hTeam = item.hTeam;
         const vTeam = item.vTeam;
         const hTeamInfo = utils.getTeam(item.hTeam);
@@ -45,8 +48,9 @@ export default class Games extends Component {
                 nugget={item.nugget}
                 clock={item.clock}
                 period={item.period}
-                hTeamLeaders={this.findTeamLeaders(hTeam.teamId)}
-                vTeamLeaders={this.findTeamLeaders(vTeam.teamId)}
+                isCollapsible={true}
+                hTeamLeaders={ gamesTeamLeaders ? this.findTeamLeaders(hTeam.teamId) : null}
+                vTeamLeaders={ gamesTeamLeaders ? this.findTeamLeaders(vTeam.teamId) : null}
             />
         )
     }

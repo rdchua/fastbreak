@@ -3,11 +3,16 @@ import { Text } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import _ from 'underscore';
 const utils = require('./utilities/helper');
+import * as api from './api/data_nba_endpoints';
+import Store from 'react-native-simple-store';
 /**
  * Import screens here
  */
 import TabsPage from './pages/Tabs';
 import GameDetailsPage from './pages/GameDetails/GameDetails';
+import TeamProfile from './pages/TeamProfile/TeamProfile';
+import reactotron from 'reactotron-react-native';
+import PlayerProfile from './pages/PlayerProfile/PlayerProfile';
 
 export default class App extends React.Component {
 
@@ -26,6 +31,7 @@ export default class App extends React.Component {
     
     componentDidMount() {
         this.oAuthTwitter();
+        utils.getPlayers;
         this.setState({ loading: false });
     }
 
@@ -45,6 +51,12 @@ const MainNavigator = createStackNavigator({
     },
     GameDetails: {
         screen: GameDetailsPage
+    },
+    TeamProfile: {
+        screen: TeamProfile
+    },
+    PlayerProfile: {
+        screen: PlayerProfile
     }
 });
 

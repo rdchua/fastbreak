@@ -3,12 +3,13 @@ import { View, Text, StyleSheet, Image, Dimensions, StatusBar } from 'react-nati
 import { ScrollView } from 'react-native-gesture-handler';
 import { styles } from './NewsStyles';
 
-import NewsCard from '../../components/NewsCard';
+import Report from '../../components/Report/Report';
 import NewsCardSquare from '../../components/NewsCardSquare';
 import LinearGradient from 'react-native-linear-gradient';
 import moment from 'moment';
 import _ from 'underscore';
 import './NewsStyles';
+import ReportCard from '../../components/ReportCard/ReportCard';
 
 export default class News extends Component {
     constructor(props) {
@@ -76,7 +77,7 @@ export default class News extends Component {
                         <NewsCardSquare article={this.state.articles[4]}/>
                     </View>
                 </ScrollView>
-                <NewsCard/>
+                <ReportCard/>
             </ScrollView>
         );
     }

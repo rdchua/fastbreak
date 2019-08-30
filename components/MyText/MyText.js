@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
+import * as Animatable from 'react-native-animatable';
 import './TextStyles.js';
+
+const fadeIn = {
+    from: {
+      opacity: 0,
+      translateY: 10
+    },
+    to: {
+      opacity: 1,
+      translateY: 0
+    },
+};
 
 export default class MyText extends Component {
 
@@ -26,6 +38,9 @@ export default class MyText extends Component {
             case 700:
                 font = this.props.italic ? 'SF-Pro-Display-BoldItalic' : 'SF-Pro-Display-Bold';
                 break;
+            case 300:
+                font = this.props.italic ? 'SF-Pro-Display-LightItalic' : 'SF-Pro-Display-Light';
+                break;
             default:
                 font = this.props.italic ? 'SF-Pro-Display-RegularItalic' : 'SF-Pro-Display-Regular'
                 break;
@@ -38,7 +53,15 @@ export default class MyText extends Component {
     render() {
         const props = {...this.props};
         return (
-            <Text style={[this.getFontStyles(props.weight), props.style]}>{props.children}</Text>
+            <Animatable.Text
+                useNativeDriver={true}
+                animation={fadeIn}
+                duration={300}
+                delay={100}
+                numberOfLines={props.numberOfLines ? props.numberOfLines : null} 
+                style={[this.getFontStyles(props.weight), props.style]}>
+                {props.children}
+            </Animatable.Text>
         );
     }
 }

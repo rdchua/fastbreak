@@ -3,7 +3,7 @@ export const styles = StyleSheet.create({
     contentConainer: {
         paddingTop: 10,
         paddingBottom: 30,
-        paddingHorizontal: 8
+        paddingHorizontal: 5
     },
     tableHeader: {
         color: '#888',
@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     },
     tableData: {
         color: 'white',
-        paddingVertical: 8,
+        paddingVertical: 10,
         textAlign: 'center'
     },
     playerContainer: {
@@ -22,9 +22,11 @@ export const styles = StyleSheet.create({
     },
     playerName: {
         flex: 1,
-        paddingVertical: 8,
+        paddingVertical: 10,
         color: 'white',
         textAlign: 'left',
+        borderBottomWidth: 0.5, 
+        borderColor: '#333'
     },
     shadow: {
         // marginLeft: -20,
@@ -44,5 +46,10 @@ export const styles = StyleSheet.create({
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderColor: '#333',
         // justifyContent: 'space-between',
+        // justifyContent: 'center'
+    },
+    itemSeparator: {
+        borderBottomWidth: StyleSheet.hairlineWidth,
+        borderColor: '#333',
     }
 });

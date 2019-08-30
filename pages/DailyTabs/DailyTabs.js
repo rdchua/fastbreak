@@ -10,6 +10,7 @@ import Store from 'react-native-simple-store';
 import Header from '../../components/Header/Header';
 import ScoreboardPage from '../Scoreboard/Scoreboard';
 import moment from 'moment-timezone';
+import axios from 'axios';
 
 export default class DailyTabs extends Component {
 
@@ -28,8 +29,7 @@ export default class DailyTabs extends Component {
     async loadPlayers() {
         const players = await Store.get('players');
         if(!players) {
-            fetch(api.PLAYERS)
-                .then((response) => response.json())
+            axios.get(api.PLAYERS)
                 .then((data) => {
                     this.setState({ 
                         players: data.league.standard, 
@@ -38,7 +38,7 @@ export default class DailyTabs extends Component {
                 });
         } else {
             this.setState({ 
-                players: players[0],
+                players: players,
                 loading: false 
             });
         }

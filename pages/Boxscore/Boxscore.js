@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, FlatList } from 'react-native';
+import { View, Text, ScrollView, FlatList, Animated } from 'react-native';
 import { styles } from './BoxscoreStyles';
 import LinearGradient from 'react-native-linear-gradient';
 import DeviceInfo from 'react-native-device-info';
@@ -84,7 +84,7 @@ export default class Boxscore extends Component {
 
     _renderStats = (player) => {
         return (
-            <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'row', borderBottomWidth: 0.5, borderColor: '#333' }}>
                 <MyText style={[styles.tableData, MIN_WIDTH]}>{player.min}</MyText>
                 <MyText style={[styles.tableData, NORMAL_WIDTH]}>{player.points}</MyText>
                 <MyText style={[styles.tableData, NORMAL_WIDTH]}>{player.totReb}</MyText>
@@ -103,6 +103,10 @@ export default class Boxscore extends Component {
                 <MyText style={[styles.tableData, NORMAL_WIDTH]}>{player.plusMinus}</MyText>
             </View>
         )
+    }
+
+    __renderSeparator = () => {
+        return <View style={styles.itemSeparator}></View>
     }
 
     handleScroll = (e) => {
@@ -127,7 +131,8 @@ export default class Boxscore extends Component {
         }
         const { params } = this.props;
         return (
-            <ScrollView contentContainerStyle={styles.contentConainer}>
+            <ScrollView
+                contentContainerStyle={[styles.contentConainer, { paddingTop: 50 }]}>
                 <Card>
                     <View style={styles.segmentContainer}>
                         <Button 
@@ -159,6 +164,7 @@ export default class Boxscore extends Component {
                         <ScrollView horizontal={true} onScroll={this.handleScroll}>
                             <FlatList
                                 ListHeaderComponent={this._renderTableHeaderStats}
+                                ItemSeparatorComponent={this._renderSeparator}
                                 data={this.state.list}
                                 extraData={this.state.list}
                                 keyExtractor={(item) => item.personId}

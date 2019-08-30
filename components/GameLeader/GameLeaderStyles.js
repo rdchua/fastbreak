@@ -19,7 +19,8 @@ export const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 40,
-        backgroundColor: '#555'
+        position: 'absolute',
+        bottom: 0,
     },
     team: {
         flex: 1,
@@ -63,9 +64,13 @@ export const styles = StyleSheet.create({
         color: '#aaa',
     },
     playerImageContainer: {
+        width: 52.5, 
+        height: 52.5,
+        borderRadius: 40,
         marginRight: 10,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        alignSelf: 'center'
     },
     stat: {
         flex: 2,

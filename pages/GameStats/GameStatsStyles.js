@@ -88,8 +88,8 @@ export const styles = StyleSheet.create({
     },
     quarterTeamImage: {
         alignSelf: 'center',
-        height: 60,
-        width: 60,
+        height: 70,
+        width: 70,
     },
     quarterTeamName: {
         flex: 4,
