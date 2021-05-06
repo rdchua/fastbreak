@@ -45,7 +45,7 @@
     "react-navigation": "^3.11.0",
     "react-navigation-material-bottom-tabs": "^1.0.0",
     "rn-placeholder": "^3.0.0-alpha.3",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.5",
